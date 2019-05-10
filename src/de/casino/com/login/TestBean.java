@@ -4,5 +4,5 @@ import javax.servlet.http.HttpServlet;
 
 public class TestBean extends HttpServlet{
 
-	String string;
+	String test;
 }
