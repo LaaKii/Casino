@@ -10,19 +10,14 @@
 		<style>
 			body {
 				background-image:url("Ressources/casino.jpg");
-				height:100%;
 			}
 			
-			div.header {
-				width:100%;
-				height:20%;
-			}
 			
 			h1.header {
 				text-align:center;
 				margin:auto;
 				width:100%;
-				padding:20px 0px;
+				padding:2vw 0px;
 				font-size:5vw;
 				font-family:Verdana;
 				letter-spacing:1.8vw;
@@ -46,11 +41,10 @@
 			
 			input.content {
 				font-size:1.2vw;
-				padding:5px 15px;
+				padding:0.5vw 2vw;
 				border-style:none;
 				margin-left:2vw;
 				border-radius:25px;
-				margin-top:10px;
 			}
 			
 			#forgetpw {
@@ -64,9 +58,9 @@
 			
 			button {
 				border:solid 2px grey;
-				padding:10px 15px;
-				border-radius:25px;
-				font-size:20px;
+				padding:1vw 1vw;
+				border-radius:3vw;
+				font-size:2vw;
 				margin-top:10px;
 				cursor:pointer;
 				border
@@ -80,9 +74,7 @@
 		</style>
 	</head>
 	<body>
-		<div class="header">
-			<h1 class="header">PEPNISCASINO</h1>
-		</div>
+		<h1 class="header">PEPNIS-CASINO</h1>
 		<form class="content">
 			<table class="content">
 				<tr>
@@ -94,7 +86,7 @@
 					<td><input type="password" class="content"></td>
 				</tr>
 				<tr>
-					<th></th>
+					<th><button>Registrieren</button></th>
 					<td><button>Anmelden</button></td>
 				</tr>
 				<tr>
