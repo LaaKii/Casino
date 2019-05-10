@@ -16,54 +16,55 @@
 			h1.header {
 				text-align:center;
 				margin:auto;
-				width:100%;
-				padding:2vw 0px;
-				font-size:5vw;
+				padding:20px 0px;
+				font-size:90px;
 				font-family:Verdana;
-				letter-spacing:1.8vw;
+				letter-spacing:15px;
 				background-color:rgba(255,255,255,0.8);
-				border-radius:25px;
+				border-radius:30px;
 			}
 			
 			form.content {
-				margin-top:10vw;
+				margin-top:200px;
 			}
 			
 			table.content {
 				background-color:rgba(255,255,255,0.8);
-				border-radius:25px;
-				padding:1vw;
+				border-radius:30px;
+				padding:15px;
 				margin:auto;
-				font-size:1.5vw;
+				font-size:30px;
 				font-family:Verdana;
 				text-align:right;
 			}
 			
+			tr {
+				height:70px;
+			}
+			
 			input.content {
-				font-size:1.2vw;
-				padding:0.5vw 2vw;
+				font-size:25px;
+				padding:10px 20px;
 				border-style:none;
-				margin-left:2vw;
-				border-radius:25px;
+				margin-left:10px;
+				border-radius:30px;
 			}
 			
 			#forgetpw {
 				text-align:center;
 				font-size:20px;
-				padding-top:20px;
-				
+				padding-top:10px;
 			}
 			
 			a{text-decoration:none}
 			
 			button {
 				border:solid 2px grey;
-				padding:1vw 1vw;
-				border-radius:3vw;
-				font-size:2vw;
-				margin-top:10px;
+				padding:10px 20px;
+				border-radius:30px;
+				font-size:25px;
+				margin-top:20px;
 				cursor:pointer;
-				border
 			}
 			
 			button:hover {
@@ -75,7 +76,7 @@
 	</head>
 	<body>
 		<h1 class="header">PEPNIS-CASINO</h1>
-		<form class="content">
+		<form action="" class="content">
 			<table class="content">
 				<tr>
 					<th>Benutzername:</th>

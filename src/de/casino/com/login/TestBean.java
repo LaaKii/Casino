@@ -4,5 +4,7 @@ import javax.servlet.http.HttpServlet;
 
 public class TestBean extends HttpServlet{
 
-	String test;
+	private String username;
+	private String email;
+	
 }
