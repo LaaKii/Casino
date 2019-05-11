@@ -109,8 +109,8 @@
 					<td><span id="agb">Ich akzeptiere die AGB.<input type="checkbox"></input></span></td>
 				</tr>
 				<tr>
-					<td style="text-align:left"><button>Zurück zum Login</button></td>
-					<td><button type="submit">Absenden</button></td>
+					<td style="text-align:left"><button name="login">Zurück zum Login</button></td>
+					<td><button type="submit" name="submit">Absenden</button></td>
 				</tr>
 			</table>
 		</form>

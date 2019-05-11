@@ -79,6 +79,7 @@
 	</head>
 	<body>
 		<h1 class="header">PEPNIS-CASINO</h1>
+		<a href="login/registration.jsp">dddd</a>
 		<form action="" class="content">
 			<table class="content">
 				<tr>
@@ -90,8 +91,8 @@
 					<td><input type="password" class="content"></td>
 				</tr>
 				<tr>
-					<th><button>Registrieren</button></th>
-					<td><button>Anmelden</button></td>
+					<th><button name="register">Registrieren</button></th>
+					<td><button name="signup">Anmelden</button></td>
 				</tr>
 				<tr>
 					<th colspan="2" id="forgetpw"><a href=#>Passwort vergessen?</a></th>
