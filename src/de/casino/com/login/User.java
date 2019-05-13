@@ -6,6 +6,7 @@ public class User extends HttpServlet{
 
 	private String username;
 	private String mail;
+	private int money;
 	
 	public User() {
 		

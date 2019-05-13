@@ -9,6 +9,8 @@
 		
 			boolean loginButtonPressed = request.getParameter("login") != null;
 			boolean submitButtonPressed = request.getParameter("submit") != null;
+			boolean signinButtonPressed = request.getParameter("signin") != null;
+			boolean signupButtonPressed = request.getParameter("signup") != null;
 			
 			if(loginButtonPressed){
 					response.sendRedirect("../index.jsp");
@@ -24,6 +26,14 @@
 				
 				out.print(user.getUsername());
 				out.print(user.getMail());
+			}
+			
+			else if(signupButtonPressed){
+				response.sendRedirect("registration.jsp");
+			}
+			
+			else if(signinButtonPressed){
+				
 			}
 		%>
 	</body>

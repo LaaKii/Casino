@@ -79,20 +79,19 @@
 	</head>
 	<body>
 		<h1 class="header">PEPNIS-CASINO</h1>
-		<a href="login/registration.jsp">dddd</a>
-		<form action="" class="content">
+		<form action="login/submit.jsp" class="content">
 			<table class="content">
 				<tr>
 					<th>Benutzername:</th>
 					<td><input type="text" class="content"></td>
 				</tr>
 				<tr>
-					<th>Passwort:</th>
+					<th style="text-align:right">Passwort:</th>
 					<td><input type="password" class="content"></td>
 				</tr>
 				<tr>
-					<th><button name="register">Registrieren</button></th>
-					<td><button name="signup">Anmelden</button></td>
+					<td style="text-align:left"><button name="signup">Registrieren</button></td>
+					<td><button name="signin">Anmelden</button></td>
 				</tr>
 				<tr>
 					<th colspan="2" id="forgetpw"><a href=#>Passwort vergessen?</a></th>

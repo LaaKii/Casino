@@ -82,7 +82,6 @@
 	</head>
 	<body>
 		<h1 class="header">PEPNIS-CASINO</h1>
-		
 		<form action="submit.jsp" class="content">
 			<table class="content">
 				<tr id="tablehead">
