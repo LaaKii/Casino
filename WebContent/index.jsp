@@ -9,24 +9,9 @@
 	<head>
 		<title>login</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" href="Stylesheets/Header.css">
 		
-		<style>
-			body {
-				background-image:url("Ressources/casino.jpg");
-			}
-			
-			
-			h1.header {
-				text-align:center;
-				margin:auto;
-				padding:20px 0px;
-				font-size:90px;
-				font-family:Verdana;
-				letter-spacing:15px;
-				background-color:rgba(255,255,255,0.8);
-				border-radius:30px;
-			}
-			
+		<style>			
 			form.content {
 				margin-top:200px;
 			}
