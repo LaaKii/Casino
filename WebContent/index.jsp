@@ -1,29 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:useBean id="userBean"
+	class="de.casino.com.database.UserBean"
+	scope="request" />
 
 <html>
 	<head>
 		<title>login</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" href="Stylesheets/Header.css">
 		
-		<style>
-			body {
-				background-image:url("Ressources/casino.jpg");
-			}
-			
-			
-			h1.header {
-				text-align:center;
-				margin:auto;
-				padding:20px 0px;
-				font-size:90px;
-				font-family:Verdana;
-				letter-spacing:15px;
-				background-color:rgba(255,255,255,0.8);
-				border-radius:30px;
-			}
-			
+		<style>			
 			form.content {
 				margin-top:200px;
 			}
@@ -76,19 +65,19 @@
 	</head>
 	<body>
 		<h1 class="header">PEPNIS-CASINO</h1>
-		<form action="" class="content">
+		<form method="get" action="UserServlet">
 			<table class="content">
 				<tr>
 					<th>Benutzername:</th>
-					<td><input type="text" class="content"></td>
+					<td><input name="username" type="text" value="${userBean.username}"></td>
 				</tr>
 				<tr>
-					<th>Passwort:</th>
-					<td><input type="password" class="content"></td>
+					<th style="text-align:right">Passwort:</th>
+					<td><input name="password" type="text" value="${userBean.password}"></td>
 				</tr>
 				<tr>
-					<th><button>Registrieren</button></th>
-					<td><button>Anmelden</button></td>
+					<td style="text-align:left"><button name="signup">Registrieren</button></td>
+					<td><button name="signin" type="submit">Anmelden</button></td>
 				</tr>
 				<tr>
 					<th colspan="2" id="forgetpw"><a href=#>Passwort vergessen?</a></th>

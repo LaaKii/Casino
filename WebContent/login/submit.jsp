@@ -1,3 +1,4 @@
+<%@page import="java.lang.ProcessBuilder.Redirect"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page  import="de.casino.com.login.User"%>
@@ -5,15 +6,35 @@
 <html>
 	<body>
 		<%
-			String username = request.getParameter("username");
-			String mail = request.getParameter("mail");
+		
+			boolean loginButtonPressed = request.getParameter("login") != null;
+			boolean submitButtonPressed = request.getParameter("submit") != null;
+			boolean signinButtonPressed = request.getParameter("signin") != null;
+			boolean signupButtonPressed = request.getParameter("signup") != null;
 			
-			User user = new User();
-			user.setUsername(username);
-			user.setMail(mail);
+			if(loginButtonPressed){
+					response.sendRedirect("../index.jsp");
+			}
 			
-			out.print(user.getUsername());
-			out.print(user.getMail());
+			else if(submitButtonPressed){	
+				String username = request.getParameter("username");
+				String mail = request.getParameter("mail");
+				
+				User user = new User();
+				user.setUsername(username);
+				user.setMail(mail);
+				
+				out.print(user.getUsername());
+				out.print(user.getMail());
+			}
+			
+			else if(signupButtonPressed){
+				response.sendRedirect("registration.jsp");
+			}
+			
+			else if(signinButtonPressed){
+				
+			}
 		%>
 	</body>
 </html>

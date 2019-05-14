@@ -6,23 +6,9 @@
 	<head>
 		<title>registration</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" href="../Stylesheets/Header.css">
 		
 		<style>
-			body {
-				background-image:url("../Ressources/casino.jpg");
-			}
-			
-			
-			h1.header {
-				text-align:center;
-				margin:auto;
-				padding:20px 0px;
-				font-size:90px;
-				font-family:Verdana;
-				letter-spacing:15px;
-				background-color:rgba(255,255,255,0.8);
-				border-radius:30px;
-			}
 			form.content {
 				margin-top:60px;
 			}
@@ -82,7 +68,6 @@
 	</head>
 	<body>
 		<h1 class="header">PEPNIS-CASINO</h1>
-		
 		<form action="submit.jsp" class="content">
 			<table class="content">
 				<tr id="tablehead">
@@ -109,8 +94,8 @@
 					<td><span id="agb">Ich akzeptiere die AGB.<input type="checkbox"></input></span></td>
 				</tr>
 				<tr>
-					<td style="text-align:left"><button>Zurück zum Login</button></td>
-					<td><button type="submit">Absenden</button></td>
+					<td style="text-align:left"><button name="login">Zurück zum Login</button></td>
+					<td><button type="submit" name="submit">Absenden</button></td>
 				</tr>
 			</table>
 		</form>
