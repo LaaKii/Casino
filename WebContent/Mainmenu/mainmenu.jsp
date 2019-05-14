@@ -12,6 +12,7 @@
 		margin-top:200px;
 		overflow:auto;
 		white-space:nowrap;
+		
 	}
 	
 	div.content a{
@@ -20,6 +21,7 @@
 		background-color:rgba(255,255,255,0.8);
 		border-radius:30px;
 		display: inline-block;
+
 	}
 </style>
 </head>
@@ -27,9 +29,11 @@
 	<h1 class="basicHeader">Pepnis-Casino</h1>
 	<div class="content">
 		<a><img height="300" width="300" src="../Ressources/roulette4.png"></a>
-		<a>2</a>
-		<a>3</a>
-		<a>4</a>
+		<a><img height="300" width="300" src="../Ressources/blackjack.png"></a>
+		<a><img height="300" width="300" src=""></a>
+		<a><img height="300" width="300" src="../Ressources/profile.png"></a>
+		<a><img height="300" width="300" src="../Ressources/config2.png"></a>
 	</div>
+
 </body>
 </html>

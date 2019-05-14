@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet{
 
 		RequestDispatcher dispatcher;
 		if (userBean.isUserLoginCorrect())
-			dispatcher = request.getRequestDispatcher("Mainmenu/mainmenau.jsp");
+			dispatcher = request.getRequestDispatcher("Mainmenu/mainmenu.jsp");
 		else {
 			//TODO where to go
 			dispatcher = request.getRequestDispatcher("Form.jsp");
