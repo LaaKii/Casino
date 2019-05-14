@@ -5,11 +5,16 @@ import javax.servlet.http.HttpServlet;
 public class User extends HttpServlet{
 
 	private String username;
-	private String mail;
+	private String password;
 	private int money;
 	
 	public User() {
 		
+	}
+	
+	public User(String username, String password) {
+		this.username=username;
+		this.password=password;
 	}
 	
 	public String getUsername() {
@@ -18,11 +23,18 @@ public class User extends HttpServlet{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getMail() {
-		return mail;
+	public String getPassword() {
+		return password;
 	}
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setPassword(String password) {
+		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password +  "]";
+	}
+	
+	
 	
 }

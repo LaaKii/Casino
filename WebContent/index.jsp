@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<jsp:useBean id="calculatorBean"
-	class="de.casino.com.database.DbManager"
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:useBean id="userBean"
+	class="de.casino.com.database.UserBean"
 	scope="request" />
 
 <html>
@@ -64,19 +65,19 @@
 	</head>
 	<body>
 		<h1 class="header">PEPNIS-CASINO</h1>
-		<form action="login/submit.jsp" class="content">
+		<form method="get" action="UserServlet">
 			<table class="content">
 				<tr>
 					<th>Benutzername:</th>
-					<td><input type="text" class="content"></td>
+					<td><input name="username" type="text" value="${userBean.username}"></td>
 				</tr>
 				<tr>
 					<th style="text-align:right">Passwort:</th>
-					<td><input type="password" class="content"></td>
+					<td><input name="password" type="text" value="${userBean.password}"></td>
 				</tr>
 				<tr>
 					<td style="text-align:left"><button name="signup">Registrieren</button></td>
-					<td><button name="signin">Anmelden</button></td>
+					<td><button name="signin" type="submit">Anmelden</button></td>
 				</tr>
 				<tr>
 					<th colspan="2" id="forgetpw"><a href=#>Passwort vergessen?</a></th>
