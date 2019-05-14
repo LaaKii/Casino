@@ -1,0 +1,42 @@
+@charset "ISO-8859-1";
+
+form.content {
+	margin-top:60px;
+}
+
+table.content {
+	background-color:rgba(255,255,255,0.8);
+	border-radius:30px;
+	padding:15px;
+	margin:auto;
+	font-size:30px;
+	font-family:Verdana;
+	text-align:right;
+}
+
+input {
+	font-size:25px;
+	padding:10px 20px;
+	border-style:none;
+	margin-left:10px;
+	border-radius:30px;
+}
+
+tr {
+	height:90px;
+}
+
+
+
+#agb {
+	font-size:20px;
+	border:solid 2px black;
+	border-radius:30px;
+	padding:10px 15px;
+}
+#tablehead {
+	text-align:center;
+	font-size:40px;
+	font-weight:bold;
+	height:70px;
+}
