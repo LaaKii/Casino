@@ -22,10 +22,8 @@
 				
 				User user = new User();
 				user.setUsername(username);
-				user.setMail(mail);
 				
 				out.print(user.getUsername());
-				out.print(user.getMail());
 			}
 			
 			else if(signupButtonPressed){
