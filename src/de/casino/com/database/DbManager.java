@@ -2,13 +2,12 @@ package de.casino.com.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import de.casino.com.login.User;
 
 public class DbManager {
 	
@@ -30,26 +29,54 @@ public class DbManager {
 
 	}
 	
-	public List<User> queryDb(String sql) {
+	public List<UserBean> queryDb(String sql) {
 		
 		Connection conn = getConnection();
 		
-		System.out.println("Creating statement...");
+		System.out.println("Creating statement: " + sql);
 		Statement stmt;
 		ResultSet rs = null;
 		
-		List<User> allUsers = new ArrayList<User>();
+		List<UserBean> allUsers = new ArrayList<UserBean>();
 		
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				allUsers.add(new User(rs.getString("username"), rs.getString("password")));
+				allUsers.add(new UserBean(rs.getString("username"), rs.getString("password")));
 			}
+			rs.close();
+			stmt.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return allUsers;
+	}
+	
+	public boolean registerUser(UserBean newUser) {
+		
+		Connection conn = getConnection();
+		System.out.println("creating new user: " + newUser);
+		
+		String insertSql = "insert into user"
+				+"(username, password, email) values"
+				+"(?,?,?)";
+		
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(insertSql);
+			preparedStatement.setString(1, newUser.getUsername());
+			preparedStatement.setString(2, newUser.getPassword());
+			preparedStatement.setString(3, newUser.getEmail());
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 }

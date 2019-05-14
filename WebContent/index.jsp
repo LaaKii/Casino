@@ -13,9 +13,10 @@
 		<link rel="stylesheet" href="Stylesheets/basic.css">
 		<link rel="stylesheet" href="Stylesheets/index.css">		
 	</head>
+	
 	<body class="basicBackground">
 		<h1 class="basicHeader">PEPNIS-CASINO</h1>
-		<form class="content" method="get" action="UserServlet">
+		<form class="content" method="post" action="UserServlet">
 			<table class="content">
 				<tr>
 					<th>Benutzername:</th>
