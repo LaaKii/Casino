@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="../Stylesheets/Header.css">
+<link rel="stylesheet" href="../Stylesheets/basic.css">
+<link rel="stylesheet" href="../Stylesheets/mainmenu.css">
 <title>Hauptmenü</title>
 <style>
 	div.content {
@@ -15,17 +16,17 @@
 	
 	div.content a{
 		margin:50px 100px;
-		padding:100px;
+		padding:20px;
 		background-color:rgba(255,255,255,0.8);
 		border-radius:30px;
 		display: inline-block;
 	}
 </style>
 </head>
-<body>
-	<h1 class="header">Pepnis-Casino</h1>
+<body class="basicBackground">
+	<h1 class="basicHeader">Pepnis-Casino</h1>
 	<div class="content">
-		<a><img src="../Ressources/roulette.jpg"></a>
+		<a><img height="300" width="300" src="../Ressources/roulette4.png"></a>
 		<a>2</a>
 		<a>3</a>
 		<a>4</a>
