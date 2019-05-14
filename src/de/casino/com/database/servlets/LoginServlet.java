@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import de.casino.com.database.UserBean;
 
 @WebServlet("/UserServlet")
-public class UserServlet extends HttpServlet{
+public class LoginServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = -1088763422670853130L;
 

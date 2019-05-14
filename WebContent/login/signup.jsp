@@ -11,26 +11,26 @@
 	</head>
 	<body class="basicBackground">
 		<h1 class="basicHeader">PEPNIS-CASINO</h1>
-		<form action="submit.jsp" class="content">
+		<form class="content" method="get" action="../RegistrationServlet">
 			<table class="content">
 				<tr id="tablehead">
 					<td colspan="2" >Registration</td>
 				</tr>
 				<tr>
 					<td>Benutzername:</td>
-					<td><input type="text" name="username"></td>
+					<td><input class="content" name="username" type="text" value="${userBean.username}"></td>
 				</tr>
 				<tr>
 					<td>E-Mail:</td>
-					<td><input type="email" name="mail"></td>
+					<td><input class="content" name="email" type="email" value="${userBean.email}"></td>
 				</tr>
 				<tr>
 					<td>Passwort:</td>
-					<td><input type="password"></td>
+					<td><input class="content" name="password" type="password" value="${userBean.password}"></td>
 				</tr>
 				<tr>
 					<td>Passwort wiederholen:</td>
-					<td><input type="password"></td>
+					<td><input class="content" name="passwordRepeated" type="password" value="${userBean.password}"></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -38,7 +38,7 @@
 				</tr>
 				<tr>
 					<td style="text-align:left"><a class="basicButton" href="../index.jsp">Zurück zum Login</a></td>
-					<td><button class="basicButton" type="submit" name="submit">Absenden</button></td>
+					<td><button class="basicButton" name="signin" type="submit">Absenden</button></td>
 				</tr>
 			</table>
 		</form>
