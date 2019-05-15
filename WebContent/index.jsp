@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="Stylesheets/index.css">		
 	</head>
 	
-	<body class="basicBackground">
+	<body class="basicBody">
 		<h1 class="basicHeader">PEPNIS-CASINO</h1>
 		<form class="content" method="post" action="UserServlet">
 			<table class="content">
@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<th style="text-align:right">Passwort:</th>
-					<td><input class="content" name="password" type="text" value="${userBean.password}"></td>
+					<td><input class="content" name="password" type="password" value="${userBean.password}"></td>
 				</tr>
 				<tr>
 					<td style="text-align:left"><a href="login/signup.jsp" class="basicButton">Registrieren</a></td>
