@@ -5,9 +5,7 @@ import java.util.List;
 
 public class UserBean {
 	
-	private String username, password, passwordRepeated, email;
-
-	
+	private String username, firstname, lastname, password, email, passwordRepeated;
 
 	DbManager dbManager = new DbManager();
 	
@@ -63,16 +61,9 @@ public class UserBean {
 	public void setEmail(String email) {
 		this.email=email;
 	}
-	public String getPasswordRepeated() {
-		return passwordRepeated;
-	}
-
-	public void setPasswordRepeated(String passwordRepeated) {
-		this.passwordRepeated = passwordRepeated;
-	}
 	
 	public boolean isOk() {
-		if(checkUsername() && checkPassword()) {
+		if(checkUsername()) {
 			return true;
 		}
 		return false;
@@ -80,14 +71,6 @@ public class UserBean {
 	
 	public boolean checkUsername() {
 		if(username == null) {
-			return false;
-			
-		}
-		return true;
-	}
-	
-	public boolean checkPassword() {
-		if(password != passwordRepeated) {
 			return false;
 		}
 		return true;
@@ -114,5 +97,15 @@ public class UserBean {
 		return "UserBean [username=" + username + ", firstname=" + firstname + ", lastname=" + lastname + ", password="
 				+ password + ", email=" + email + "]";
 	}
+
+	public String getPasswordRepeated() {
+		return passwordRepeated;
+	}
+
+	public void setPasswordRepeated(String passwordRepeated) {
+		this.passwordRepeated = passwordRepeated;
+	}
+	
+	
 
 }
