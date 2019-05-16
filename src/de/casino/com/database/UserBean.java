@@ -61,6 +61,20 @@ public class UserBean {
 	public void setEmail(String email) {
 		this.email=email;
 	}
+	
+	public boolean isOk() {
+		if(checkUsername()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean checkUsername() {
+		if(username == null) {
+			return false;
+		}
+		return true;
+	}
 
 	@Override
 	public String toString() {

@@ -25,44 +25,23 @@ public class RegistrationServlet extends HttpServlet {
 			request.setAttribute("userBean", userBean);
 		}
 
-		boolean allInputsCorrect = true;
+			userBean.setUsername(request.getParameter("username"));
+			userBean.setPassword(request.getParameter("password"));
+			userBean.setEmail(request.getParameter("email"));
 
-		String username = request.getParameter("username");
-
-		if (username == null) {
-			allInputsCorrect = false;
-			// Meldung zurück geben
-		}
-
-		String mail = request.getParameter("email");
-
-		String password = request.getParameter("password");
-
-		if (password != request.getParameter("passwordRepeated")) {
-			allInputsCorrect = false;
-			// Meldung zurück geben
-		}
-
-		if (request.getParameter("agb") == null) {
-			allInputsCorrect = false;
-			// Meldung zurück geben
-		}
-
-		if(allInputsCorrect) {
-			userBean.setUsername(username);
-			userBean.setPassword(password);
-			userBean.setEmail(mail);
-
+		
 			RequestDispatcher dispatcher;
+			if(userBean.isOk())
+			{
 			userBean.registerUser();
 			dispatcher = request.getRequestDispatcher("index.jsp");
+			}
+			
+			else {
+				dispatcher = request.getRequestDispatcher("login/signup.jsp");
+			}
 			dispatcher.forward(request, response);
-			//response.sendRedirect("index.jsp");
-		}
-		
-		else {
-			response.sendRedirect("login/signup.jsp");
-		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
