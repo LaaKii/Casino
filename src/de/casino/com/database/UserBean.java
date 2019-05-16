@@ -6,6 +6,15 @@ import java.util.List;
 public class UserBean {
 	
 	private String username, firstname, lastname, password, email, passwordRepeated;
+	private String border;
+
+	public String getBorder() {
+		return border;
+	}
+
+	public void setBorder(String border) {
+		this.border = border;
+	}
 
 	DbManager dbManager = new DbManager();
 	
@@ -70,7 +79,8 @@ public class UserBean {
 	}
 	
 	public boolean checkUsername() {
-		if(username == null) {
+		if(username.equals("")) {
+			border="border-color:red";
 			return false;
 		}
 		return true;

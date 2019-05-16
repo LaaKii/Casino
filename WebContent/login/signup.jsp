@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<jsp:useBean id="userBean"
+	class="de.casino.com.database.UserBean"
+	scope="request" />
 <!DOCTYPE html>
 
 <html>
@@ -18,12 +21,12 @@
 			</tr>
 			<tr>
 				<td>Benutzername:</td>
-				<td><input class="content" name="username" type="text"
+				<td><input  class="content" name="username" type="text"
 					value="${userBean.username}"></td>
 			</tr>
 			<tr>
 				<td>Vorname:</td>
-				<td><input class="content" name="firstname" type="text"
+				<td><input style="${userBean.border}" class="content" name="firstname" type="text"
 					value="${userBean.firstname}"></td>
 			</tr>
 			<tr>
