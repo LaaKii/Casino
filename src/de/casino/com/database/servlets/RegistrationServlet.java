@@ -27,14 +27,15 @@ public class RegistrationServlet extends HttpServlet {
 
 			userBean.setUsername(request.getParameter("username"));
 			userBean.setPassword(request.getParameter("password"));
+			userBean.setPasswordRepeated(request.getParameter("passwordRepeated"));
 			userBean.setEmail(request.getParameter("email"));
 
 		
 			RequestDispatcher dispatcher;
 			if(userBean.isOk())
 			{
-			userBean.registerUser();
-			dispatcher = request.getRequestDispatcher("index.jsp");
+				userBean.registerUser();
+				dispatcher = request.getRequestDispatcher("index.jsp");
 			}
 			
 			else {
