@@ -14,7 +14,7 @@ public class DbManager {
 	
 	public Connection getConnection() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,14 +61,16 @@ public class DbManager {
 		System.out.println("creating new user: " + newUser);
 		
 		String insertSql = "insert into user"
-				+"(username, password, email) values"
-				+"(?,?,?)";
+				+"(username, firstname, lastname, password, email) values"
+				+"(?,?,?,?,?)";
 		
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(insertSql);
 			preparedStatement.setString(1, newUser.getUsername());
-			preparedStatement.setString(2, newUser.getPassword());
-			preparedStatement.setString(3, newUser.getEmail());
+			preparedStatement.setString(2, newUser.getFirstname());
+			preparedStatement.setString(3, newUser.getLastname());
+			preparedStatement.setString(4, newUser.getPassword());
+			preparedStatement.setString(5, newUser.getEmail());
 			preparedStatement.executeUpdate();
 			preparedStatement.close();
 			conn.close();

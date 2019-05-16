@@ -22,6 +22,16 @@
 					value="${userBean.username}"></td>
 			</tr>
 			<tr>
+				<td>Vorname:</td>
+				<td><input class="content" name="firstname" type="text"
+					value="${userBean.firstname}"></td>
+			</tr>
+			<tr>
+				<td>Nachname:</td>
+				<td><input class="content" name="lastname" type="text"
+					value="${userBean.lastname}"></td>
+			</tr>
+			<tr>
 				<td>E-Mail:</td>
 				<td><input class="content" name="email" type="email"
 					value="${userBean.email}"></td>

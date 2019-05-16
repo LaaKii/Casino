@@ -26,6 +26,8 @@ public class RegistrationServlet extends HttpServlet {
 		}
 
 			userBean.setUsername(request.getParameter("username"));
+			userBean.setFirstname(request.getParameter("firstname"));
+			userBean.setLastname(request.getParameter("lastname"));
 			userBean.setPassword(request.getParameter("password"));
 			userBean.setPasswordRepeated(request.getParameter("passwordRepeated"));
 			userBean.setEmail(request.getParameter("email"));
