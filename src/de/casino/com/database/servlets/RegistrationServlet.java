@@ -18,6 +18,12 @@ public class RegistrationServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		UserBean userBean = (UserBean) request.getAttribute("userBean");
+		if (userBean == null) {
+			userBean = new UserBean();
+			request.setAttribute("userBean", userBean);
+		}
 
 		boolean allInputsCorrect = true;
 
@@ -25,7 +31,7 @@ public class RegistrationServlet extends HttpServlet {
 
 		if (username == null) {
 			allInputsCorrect = false;
-			// meldung zurück geben
+			// Meldung zurück geben
 		}
 
 		String mail = request.getParameter("email");
@@ -42,12 +48,7 @@ public class RegistrationServlet extends HttpServlet {
 			// Meldung zurück geben
 		}
 
-		if (allInputsCorrect) {
-			UserBean userBean = (UserBean) request.getAttribute("userBean");
-			if (userBean == null) {
-				userBean = new UserBean();
-				request.setAttribute("userBean", userBean);
-			}
+		if(allInputsCorrect) {
 			userBean.setUsername(username);
 			userBean.setPassword(password);
 			userBean.setEmail(mail);
@@ -57,6 +58,10 @@ public class RegistrationServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
 			//response.sendRedirect("index.jsp");
+		}
+		
+		else {
+			response.sendRedirect("login/signup.jsp");
 		}
 	}
 
