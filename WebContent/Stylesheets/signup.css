@@ -13,7 +13,7 @@ table.content {
 	text-align: right;
 }
 
-input {
+.textInput {
 	font-size: 25px;
 	padding: 10px 20px;
 	border-style: none;

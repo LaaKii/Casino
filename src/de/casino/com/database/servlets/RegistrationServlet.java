@@ -31,7 +31,7 @@ public class RegistrationServlet extends HttpServlet {
 			userBean.setPassword(request.getParameter("password"));
 			userBean.setPasswordRepeated(request.getParameter("passwordRepeated"));
 			userBean.setEmail(request.getParameter("email"));
-			userBean.setBorder("border-color:grey");
+			userBean.setSubmitted(true);
 
 		
 			RequestDispatcher dispatcher;

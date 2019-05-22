@@ -6,14 +6,16 @@ import java.util.List;
 public class UserBean {
 	
 	private String username, firstname, lastname, password, email, passwordRepeated;
-	private String border;
+	private boolean submitted = false;
+	
+	
 
-	public String getBorder() {
-		return border;
+	public boolean isSubmitted() {
+		return submitted;
 	}
 
-	public void setBorder(String border) {
-		this.border = border;
+	public void setSubmitted(boolean submitted) {
+		this.submitted = submitted;
 	}
 
 	DbManager dbManager = new DbManager();
@@ -72,15 +74,43 @@ public class UserBean {
 	}
 	
 	public boolean isOk() {
-		if(checkUsername()) {
+		if(checkUsername() && checkFirstname() && checkLastname() && checkEmail() && checkPassword()) {
 			return true;
 		}
 		return false;
+		
 	}
 	
 	public boolean checkUsername() {
 		if(username.equals("")) {
-			border="border-color:red";
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkFirstname() {
+		if(firstname.equals("")) {
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkLastname() {
+		if(lastname.equals("")) {
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkEmail() {
+		if(email.equals("")) {
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkPassword() {
+		if(password.equals("")) {
 			return false;
 		}
 		return true;
