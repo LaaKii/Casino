@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.casino.com.dao.DatabaseDao;
+import de.casino.com.dao.KontoDao;
 import de.casino.com.dao.UserDao;
+import de.casino.com.database.KontoBean;
 import de.casino.com.database.UserBean;
 
 @WebServlet("/RegistrationServlet")
@@ -19,7 +21,8 @@ public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 3698751230122561475L;
 	
 	DatabaseDao<UserBean> userDao = new UserDao();
-
+	DatabaseDao<KontoBean> kontoDao = new KontoDao();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -40,8 +43,11 @@ public class RegistrationServlet extends HttpServlet {
 		
 			RequestDispatcher dispatcher;
 			if(userBean.isOk())
-			{
+			{	
 				userDao.createNewItem(userBean);
+				//Objekt wieder aus db holen wegen generierter ID
+				UserBean userFromDb = userDao.getSingleItemByValue("username", userBean);
+				kontoDao.createNewItem(new KontoBean(userFromDb.getIdUser(), 0));
 				dispatcher = request.getRequestDispatcher("index.jsp");
 			}
 			

@@ -1,2 +1,5 @@
-- preparedstatements verwenden
 - dao überarbeiten, generics funktionieren so leider doch nicht...
+- registrierung mit neuem konto. objekt nicht direkt wieder aus db holen
+- username darf es nur einmal geben, aufpassen bei registrierung
+- verwendung von transaktionen bei anlegen von fremdschlüssen. Z.b. user und konto
+- logging einführen (log4j oder sowas)

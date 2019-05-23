@@ -8,20 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.casino.com.database.DbManager;
-import de.casino.com.database.UserBean;
+import de.casino.com.database.TransactionBean;
 import de.casino.com.exceptions.UserNotFoundException;
 
-public class UserDao implements DatabaseDao<UserBean>{
+public class TransactionDao implements DatabaseDao<TransactionBean>{
 
 	@Override
-	public UserBean getSingleItemByValue(String column, UserBean value) {
+	public TransactionBean getSingleItemByValue(String column, TransactionBean value) {
 		String sql="";
 		switch (column) {
-		case "idUser":
-			sql = "Select * from user where idUser= " + value.getIdUser();
+		case "idKonto":
+			sql = "Select * from transactions where idKonto= " + value.getIdKonto();
 			break;
-		case "username":
-			sql = "Select * from user where username= '" + value.getUsername() + "'";
+		case "idTransaction":
+			sql = "Select * from transactions where idTransaction= " + value.getIdTransaction();
+			break;
+		case "idGame":
+			sql = "Select * from transactions where idGame = " + value.getIdGame();
 			break;
 		default:
 			break;
@@ -30,13 +33,13 @@ public class UserDao implements DatabaseDao<UserBean>{
 		Statement stmt = null;
 		ResultSet rs = null;
 		
-		UserBean res = null;
+		TransactionBean res = null;
 		
 		try {
 			stmt = DbManager.getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				res = new UserBean(rs.getInt("idUser"),rs.getString("username"), rs.getString("firstname"), rs.getString("lastname"),rs.getString("password"),rs.getString("email"));
+				res = new TransactionBean(rs.getInt("idTransaction"),rs.getInt("idGame"),rs.getInt("idKonto"),rs.getDouble("transactionAmount"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,21 +66,20 @@ public class UserDao implements DatabaseDao<UserBean>{
 	}
 
 	@Override
-	public List<UserBean> getAllItems() {
-		
-		String sql = "Select * from user";
+	public List<TransactionBean> getAllItems() {
+		String sql = "Select * from transactions";
 		
 		System.out.println("Creating statement: " + sql);
 		Statement stmt;
 		ResultSet rs = null;
 		
-		List<UserBean> allUsers = new ArrayList<UserBean>();
+		List<TransactionBean> allTransactions = new ArrayList<TransactionBean>();
 		
 		try {
 			stmt = DbManager.getConnection().createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				allUsers.add(new UserBean(rs.getInt("idUser"),rs.getString("username"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("password"),rs.getString("email")));
+				allTransactions.add(new TransactionBean(rs.getInt("idTransaction"),rs.getInt("idGame"),rs.getInt("idKonto"),rs.getDouble("transactionAmount")));
 			}
 			rs.close();
 			stmt.close();
@@ -85,24 +87,28 @@ public class UserDao implements DatabaseDao<UserBean>{
 			e.printStackTrace();
 		}
 		
-		return allUsers;
+		return allTransactions;
 	}
-	
+
 	@Override
-	public boolean createNewItem(UserBean newItem) {
-		System.out.println("creating new user: " + newItem);
+	public boolean deleteItemById(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean createNewItem(TransactionBean newItem) {
+		System.out.println("creating new transaction: " + newItem);
 		
-		String insertSql = "insert into user"
-				+"(username, firstname, lastname, password, email) values"
-				+"(?,?,?,?,?)";
+		String insertSql = "insert into transactions"
+				+"(idGame, idKonto, transactionAmount) values"
+				+"(?,?,?)";
 		
 		try {
 			PreparedStatement preparedStatement = DbManager.getConnection().prepareStatement(insertSql);
-			preparedStatement.setString(1, newItem.getUsername());
-			preparedStatement.setString(2, newItem.getFirstname());
-			preparedStatement.setString(3, newItem.getLastname());
-			preparedStatement.setString(4, newItem.getPassword());
-			preparedStatement.setString(5, newItem.getEmail());
+			preparedStatement.setInt(1, newItem.getIdGame());
+			preparedStatement.setInt(2, newItem.getIdKonto());
+			preparedStatement.setDouble(3, newItem.getTransactionAmount());
 			preparedStatement.executeUpdate();
 			preparedStatement.close();
 		} catch (SQLException e) {
@@ -110,13 +116,10 @@ public class UserDao implements DatabaseDao<UserBean>{
 			return false;
 		}
 		return true;
-		
+	
+
 	}
 	
-	@Override
-	public boolean deleteItemById(int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
+
 }
