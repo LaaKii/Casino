@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.casino.com.dao.DatabaseDao;
+import de.casino.com.dao.UserDao;
 import de.casino.com.database.UserBean;
 
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3698751230122561475L;
+	
+	DatabaseDao<UserBean> userDao = new UserDao();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -32,12 +36,12 @@ public class RegistrationServlet extends HttpServlet {
 			userBean.setPasswordRepeated(request.getParameter("passwordRepeated"));
 			userBean.setEmail(request.getParameter("email"));
 			userBean.setSubmitted(true);
-
+			
 		
 			RequestDispatcher dispatcher;
 			if(userBean.isOk())
 			{
-				userBean.registerUser();
+				userDao.createNewItem(userBean);
 				dispatcher = request.getRequestDispatcher("index.jsp");
 			}
 			

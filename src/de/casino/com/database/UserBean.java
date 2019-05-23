@@ -1,14 +1,29 @@
 package de.casino.com.database;
 
-import java.util.List;
-
-
 public class UserBean {
 	
 	private String username, firstname, lastname, password, email, passwordRepeated;
 	private boolean submitted = false;
+	private int idUser;
 	
 	
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+	public UserBean(int userId, String username, String firstname, String lastname, String password, String email) {
+		this.idUser=userId;
+		this.username = username;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.password = password;
+		this.email = email;
+	}
 
 	public boolean isSubmitted() {
 		return submitted;
@@ -18,28 +33,6 @@ public class UserBean {
 		this.submitted = submitted;
 	}
 
-	DbManager dbManager = new DbManager();
-	
-	public boolean isUserLoginCorrect() {
-		System.out.println("checking " + username + " password: " + password);
-		
-		
-		List<UserBean> allUsers = dbManager.queryDb("select * from user;");
-		
-		for (UserBean user : allUsers) {
-			if (user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
-				System.out.println("user authenticated");
-				return true;
-			}
-		}
-		System.out.println("user not authenticated");
-		return false;
-	}
-	
-	public boolean registerUser() {
-		return dbManager.registerUser(this);
-	}
-	
 	public UserBean() {
 		
 	}

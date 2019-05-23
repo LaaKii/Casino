@@ -11,22 +11,40 @@ import java.util.List;
 
 public class DbManager {
 	
+	private static Connection conn = null;
 	
-	public Connection getConnection() {
+	private DbManager() {
+		
+	}
+	
+	public static Connection getConnection() {
+		
+		if (conn==null) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/casino?serverTimezone=UTC", "root",null);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return conn;
+		}
+		
+		return conn;
+
+	}
+	
+	public static void closeConnection() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
+			conn.close();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Connection conn = null;
-		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/casino?serverTimezone=UTC", "root",null);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return conn;
-
 	}
 	
 	public List<UserBean> queryDb(String sql) {

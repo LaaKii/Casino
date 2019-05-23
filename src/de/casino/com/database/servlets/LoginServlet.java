@@ -9,13 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.casino.com.dao.DatabaseDao;
+import de.casino.com.dao.UserDao;
 import de.casino.com.database.UserBean;
+import de.casino.com.login.LoginService;
 
 @WebServlet("/UserServlet")
 public class LoginServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = -1088763422670853130L;
-
+	
+	private LoginService loginService = new LoginService();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -28,7 +33,7 @@ public class LoginServlet extends HttpServlet{
 		userBean.setPassword(request.getParameter("password"));
 
 		RequestDispatcher dispatcher;
-		if (userBean.isUserLoginCorrect())
+		if (loginService.isUserLoginCorrect(userBean))
 			dispatcher = request.getRequestDispatcher("Mainmenu/mainmenu.jsp");
 		else {
 			//TODO where to go
