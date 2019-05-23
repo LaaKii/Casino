@@ -1,3 +1,5 @@
+create schema casino;
+
 CREATE TABLE casino.user (
   idUser INT NOT NULL AUTO_INCREMENT,
   firstname varchar(255),
