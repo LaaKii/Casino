@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="../Stylesheets/basic.css">
-<link rel="stylesheet" href="../Stylesheets/mainmenu.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/mainmenu.css">
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
-<script type='text/javascript' src='../javascript/jquery.mousewheel.js'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath}/javascript/jquery.mousewheel.js'></script>
 <script>
 $(document).ready(function() {
 	$('.content').mousewheel(function(e, delta) {

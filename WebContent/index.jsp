@@ -35,5 +35,9 @@
 				</tr>
 			</table>
 		</form>
+		<div class="basicFooter">
+			<a class="footer" href="${pageContext.request.contextPath}/others/impressum.jsp">Impressum</a>
+			<a class="footer" href="${pageContext.request.contextPath}/others/faq.jsp">FAQ</a>
+		</div>
 	</body>
 </html>

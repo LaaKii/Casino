@@ -34,3 +34,17 @@
 	color:white;
 }
 
+.basicFooter {
+	background-color:rgba(255,255,255,0.8);
+	position:fixed;
+	bottom:10px;
+	right:10px;
+	border-radius:30px;
+	padding:20px 20px;
+}
+
+a.footer {
+margin:10px;
+text-decoration:none;
+}
+
