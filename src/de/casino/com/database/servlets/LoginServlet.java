@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import de.casino.com.dao.DatabaseDao;
 import de.casino.com.dao.UserDao;
 import de.casino.com.database.UserBean;
-import de.casino.com.login.LoginService;
+import de.casino.com.services.LoginService;
 
 @WebServlet("/UserServlet")
 public class LoginServlet extends HttpServlet{

@@ -1,4 +1,4 @@
-package de.casino.com.login;
+package de.casino.com.services;
 
 import java.util.List;
 
