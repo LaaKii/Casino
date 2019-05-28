@@ -34,16 +34,20 @@
 	color:white;
 }
 
-.basicFooter {
-	background-color:rgba(255,255,255,0.8);
-	position:fixed;
-	bottom:10px;
-	right:10px;
-	border-radius:30px;
-	padding:20px 20px;
+footer{
+	margin-top:60px;
+	text-align:right;
+	margin-bottom:30px;
 }
 
-a.footer {
+.basicFooter {
+	background-color:rgba(255,255,255,0.8);
+	border-radius:30px;
+	padding:20px 20px;
+	
+}
+
+.basicFooter a {
 margin:10px;
 text-decoration:none;
 }

@@ -13,9 +13,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/signup.css">
 
-
-<%if(userBean.isSubmitted() == true){%>
+<%if(userBean.isSubmitted()){%>
 	<style>
+	#usernameInput{border-color:red}
 		<%if(userBean.checkUsername() == false){%>
 		
 		#usernameInput{border-color:red}
@@ -44,6 +44,12 @@
 		
 		#passwordInput{border-color:red}
 		#passwordRepeatedInput{border-color:red}
+		
+		<%}
+		
+		if(userBean.isAgbAccepted() == false){%>
+		
+		.agb{border-color:red}
 			
 		<%}%>
 		
@@ -102,5 +108,11 @@
 			</tr>
 		</table>
 	</form>
+	<footer>
+		<span class="basicFooter">
+			<a href="${pageContext.request.contextPath}/others/impressum.jsp">Impressum</a>
+			<a href="${pageContext.request.contextPath}/others/faq.jsp">FAQ</a>
+		</span>
+	</footer>
 </body>
 </html>

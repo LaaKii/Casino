@@ -18,10 +18,10 @@
 		Telefon 02139083492<br>
 		Email ichBinsTiiiim@web.de<br>
 	</div>
-	<div class="basicFooter">
-		<a class="footer" href="${pageContext.request.contextPath}/others/impressum.jsp">Impressum</a>
-		<a class="footer" href="${pageContext.request.contextPath}/others/faq.jsp">FAQ</a>
-	</div>
-	
+	<footer>
+		<span class="basicFooter">
+			<a class="footer" href="javascript:history.back()">Zurück</a>
+		</span>
+	</footer>
 </body>
 </html>

@@ -3,13 +3,21 @@ package de.casino.com.database;
 public class UserBean {
 	
 	private String username, firstname, lastname, password, email, passwordRepeated;
-	private boolean submitted = false;
+	private boolean submitted = false, agbAccepted = false;
 	private int idUser;
 	
 	
 
 	public int getIdUser() {
 		return idUser;
+	}
+
+	public boolean isAgbAccepted() {
+		return agbAccepted;
+	}
+
+	public void setAgbAccepted(boolean agbAccepted) {
+		this.agbAccepted = agbAccepted;
 	}
 
 	public void setIdUser(int idUser) {

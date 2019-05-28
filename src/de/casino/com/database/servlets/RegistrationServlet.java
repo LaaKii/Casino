@@ -38,6 +38,12 @@ public class RegistrationServlet extends HttpServlet {
 			userBean.setPassword(request.getParameter("password"));
 			userBean.setPasswordRepeated(request.getParameter("passwordRepeated"));
 			userBean.setEmail(request.getParameter("email"));
+			if(request.getParameter("agb") != null) {
+				userBean.setAgbAccepted(true);
+			}
+			else {
+				userBean.setAgbAccepted(false);
+			}
 			userBean.setSubmitted(true);
 			
 		
