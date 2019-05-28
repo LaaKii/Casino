@@ -21,6 +21,8 @@ public class KontoBean {
 		this.money=money;
 	}
 	
+	public KontoBean() {};
+	
 	public int getIdKonto() {
 		return idKonto;
 	}

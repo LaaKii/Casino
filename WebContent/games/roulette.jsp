@@ -5,6 +5,9 @@
 <jsp:useBean id="userBean"
 	class="de.casino.com.database.UserBean"
 	scope="session" />
+<jsp:useBean id="transactionBean"
+	class="de.casino.com.database.TransactionBean"
+	scope="request" />
 <html>
 	<head>
 		<title>login</title>
@@ -15,22 +18,14 @@
 	
 	<body class="basicBody">
 		<h1 class="basicHeader">Username: ${userBean.username}</h1>
-		<form class="content" method="post" action="${pageContext.request.contextPath}/UserServlet">
+		<form class="content" method="post" action="${pageContext.request.contextPath}/TransactionServlet">
 			<table class="content">
 				<tr>
 					<th>Amount:</th>
-					<td><input class="content" name="username" type="text" value="${userBean.username}"></td>
+					<td><input class="content" name="amount" type="number" value="${transactionBean.transactionAmount}"></td>
 				</tr>
 				<tr>
-					<th style="text-align:right">Passwort:</th>
-					<td><input class="content" name="password" type="password" value="${userBean.password}"></td>
-				</tr>
-				<tr>
-					<td style="text-align:left"><a href="${pageContext.request.contextPath}/login/signup.jsp" class="basicButton">Registrieren</a></td>
-					<td><button class="basicButton" name="signin" type="submit">Anmelden</button></td>
-				</tr>
-				<tr>
-					<th colspan="2" id="forgetpw"><a href=#>Passwort vergessen?</a></th>
+					<td><button class="basicButton" name="signin" type="submit">Absenden</button></td>
 				</tr>
 			</table>
 		</form>
