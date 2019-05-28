@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="userBean"
 	class="de.casino.com.database.UserBean"
-	scope="request" />
+	scope="session" />
 
 <html>
 	<head>
