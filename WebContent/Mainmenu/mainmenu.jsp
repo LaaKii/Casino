@@ -11,7 +11,7 @@
 <script>
 $(document).ready(function() {
 	$('.content').mousewheel(function(e, delta) {
-	this.scrollLeft -= (delta * 2);
+	this.scrollLeft -= (delta * 30);
 	e.preventDefault();
 	});
 	});
@@ -46,11 +46,11 @@ $(function() {
 	<h1 class="basicHeader">Pepnis-Casino</h1>
 	<div class="choiceWrapper"><span id="choice">test</span></div>
 	<div class="content">
-		<a onmouseover="showTitle('Roulette')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="../Ressources/roulette4.png"></a>
-		<a onmouseover="showTitle('Blackjack')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="../Ressources/blackjack.png"></a>
+		<a onmouseover="showTitle('Roulette')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/roulette4.png"></a>
+		<a onmouseover="showTitle('Blackjack')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/blackjack.png"></a>
 		<a onmouseover="showTitle(' ')" onmouseout="hideTitle()" href=#><img height="250" width="250" src=""></a>
-		<a onmouseover="showTitle('Profil')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="../Ressources/profile.png"></a>
-		<a onmouseover="showTitle('Einstellungen')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="../Ressources/config2.png"></a>
+		<a onmouseover="showTitle('Profil')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/profile.png"></a>
+		<a onmouseover="showTitle('Einstellungen')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/config2.png"></a>
 	</div>
 
 </body>
