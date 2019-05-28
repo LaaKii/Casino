@@ -4,8 +4,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<<<<<<< HEAD
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/mainmenu.css">
+=======
+<jsp:useBean id="userBean"
+	class="de.casino.com.database.UserBean"
+	scope="session" />
+<link rel="stylesheet" href="../Stylesheets/basic.css">
+<link rel="stylesheet" href="../Stylesheets/mainmenu.css">
+>>>>>>> branch 'master' of https://github.com/LaaKii/Casino.git
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
 <script type='text/javascript' src='${pageContext.request.contextPath}/javascript/jquery.mousewheel.js'></script>
 <script>
@@ -43,7 +51,7 @@ $(function() {
 </script>
 </head>
 <body class="basicBody">
-	<h1 class="basicHeader">Pepnis-Casino</h1>
+	<h1 class="basicHeader">Username ${userBean.username}</h1>
 	<div class="choiceWrapper"><span id="choice">test</span></div>
 	<div class="content">
 		<a onmouseover="showTitle('Roulette')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/roulette4.png"></a>

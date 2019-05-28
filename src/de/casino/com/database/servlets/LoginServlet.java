@@ -39,6 +39,7 @@ public class LoginServlet extends HttpServlet{
 			//TODO where to go
 			dispatcher = request.getRequestDispatcher("Form.jsp");
 		}
+		request.getSession().setAttribute("userBean", userBean);
 		dispatcher.forward(request, response);
 	}
 	
