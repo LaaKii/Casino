@@ -119,6 +119,12 @@ public class TransactionDao implements DatabaseDao<TransactionBean>{
 	
 
 	}
+
+	@Override
+	public boolean updateItem(TransactionBean item) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 

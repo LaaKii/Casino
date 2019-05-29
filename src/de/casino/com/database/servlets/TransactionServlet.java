@@ -7,12 +7,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
 
 import de.casino.com.database.GameBean;
 import de.casino.com.database.KontoBean;
 import de.casino.com.database.TransactionBean;
 import de.casino.com.database.UserBean;
+import de.casino.com.services.GameService;
 import de.casino.com.services.KontoService;
 import de.casino.com.services.TransactionService;
 import de.casino.com.services.UserService;
@@ -23,6 +23,8 @@ public class TransactionServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private TransactionService transactionService = new TransactionService();
 	private KontoService kontoService = new KontoService();
+	private UserService userService = new UserService();
+	private GameService gameService = new GameService();
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,16 +41,16 @@ public class TransactionServlet extends HttpServlet{
 		
 		
 		UserBean userBean = (UserBean) req.getSession().getAttribute("userBean");
+		userBean = userService.getUserByUsername(userBean.getUsername());
 		
 		
-		
-		System.out.println("Username from userBean: " + userBean.getUsername()); 
+		System.out.println("Current UserBean: " + userBean); 
 		System.out.println("Transactionamount: " + transactionBean.getTransactionAmount());
-//		KontoBean kontoBean = kontoService.getKontoByUser(userBean);
+		KontoBean kontoBean = kontoService.getKontoByUser(userBean);
+		GameBean gameBean = gameService.getGameByName(new GameBean("Roulette"));
 		
-		
-//		transactionService.createTransaction(new GameBean("Roulette"), kontoBean, transactionBean.getTransactionAmount());
-		
+		transactionService.createTransaction(gameBean, kontoBean, transactionBean.getTransactionAmount());
+		kontoService.updateKontoMoney(kontoBean);
 	}
 	
 	@Override

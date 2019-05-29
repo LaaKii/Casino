@@ -115,4 +115,18 @@ public class KontoDao implements DatabaseDao<KontoBean>{
 		return true;
 	}
 	
+	@Override
+	public boolean updateItem(KontoBean item) {
+			String insertSql = "update konto set money=" + item.getMoney() + " where idKonto="+item.getIdKonto();
+
+			try {
+			  Statement stmt = DbManager.getConnection().createStatement();
+		      stmt.executeUpdate(insertSql);
+		      System.out.println("Database updated successfully ");
+		    } catch (SQLException e) {
+		      e.printStackTrace();
+		      return false;
+		    }
+			return true;
+	}
 }

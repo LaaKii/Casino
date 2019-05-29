@@ -17,11 +17,11 @@ public class GameDao implements DatabaseDao<GameBean>{
 	public GameBean getSingleItemByValue(String column, GameBean value) {
 		String sql="";
 		switch (column) {
-		case "idUser":
+		case "idGame":
 			sql = "Select * from games where idGame=" + value.getIdGame();
 			break;
-		case "gamename":
-			sql = "Select * from games where gameName=" + value.getGameName();
+		case "gameName":
+			sql = "Select * from games where gameName='" + value.getGameName()+"'";
 			break;
 		default:
 			break;
@@ -112,6 +112,12 @@ public class GameDao implements DatabaseDao<GameBean>{
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public boolean updateItem(GameBean item) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	

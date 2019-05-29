@@ -9,5 +9,6 @@ public interface DatabaseDao<T> {
 	public List<T> getAllItems();
 	public boolean deleteItemById(int id);
 	public boolean createNewItem(T newItem);
+	public boolean updateItem(T item);
 	
 }

@@ -118,5 +118,11 @@ public class UserDao implements DatabaseDao<UserBean>{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean updateItem(UserBean item) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

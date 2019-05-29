@@ -15,4 +15,9 @@ public class TransactionService {
 		return transactionDao.createNewItem(transaction);
 	}
 	
+	public TransactionBean getLatestTransactionForKonto(KontoBean konto) {
+		TransactionBean transactionBean = new TransactionBean();
+		transactionBean.setIdKonto(konto.getIdKonto());
+		return transactionDao.getSingleItemByValue("idKonto", transactionBean);
+	}
 }
