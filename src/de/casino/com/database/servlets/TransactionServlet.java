@@ -7,10 +7,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import de.casino.com.database.GameBean;
 import de.casino.com.database.KontoBean;
 import de.casino.com.database.TransactionBean;
+import de.casino.com.database.UserBean;
+import de.casino.com.services.KontoService;
 import de.casino.com.services.TransactionService;
 import de.casino.com.services.UserService;
 
@@ -19,7 +22,7 @@ public class TransactionServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	private TransactionService transactionService = new TransactionService();
-	private UserService userService = new UserService();
+	private KontoService kontoService = new KontoService();
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,22 +34,25 @@ public class TransactionServlet extends HttpServlet{
 			req.setAttribute("transactionBean", transactionBean);
 		}
 		
+		
 		transactionBean.setTransactionAmount(Integer.parseInt(req.getParameter("amount")));
 		
 		
-		
-		KontoBean kontoBean = new KontoBean();
-		//TODO
-		//userService.getUserByUsername(username)	
+		UserBean userBean = (UserBean) req.getSession().getAttribute("userBean");
 		
 		
-		transactionService.createTransaction(new GameBean("Roulette"), kontoBean, transactionBean.getTransactionAmount());
+		
+		System.out.println("Username from userBean: " + userBean.getUsername()); 
+		System.out.println("Transactionamount: " + transactionBean.getTransactionAmount());
+//		KontoBean kontoBean = kontoService.getKontoByUser(userBean);
+		
+		
+//		transactionService.createTransaction(new GameBean("Roulette"), kontoBean, transactionBean.getTransactionAmount());
 		
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(req, resp);
 	}
 }
