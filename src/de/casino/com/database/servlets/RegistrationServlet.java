@@ -46,7 +46,6 @@ public class RegistrationServlet extends HttpServlet {
 			}
 			userBean.setSubmitted(true);
 			
-		
 			RequestDispatcher dispatcher;
 			if(userBean.isOk())
 			{	

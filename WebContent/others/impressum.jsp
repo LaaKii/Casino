@@ -9,7 +9,7 @@
 <title>Impressum</title>
 </head>
 <body class="basicBody">
-	<h1 class="basicHeader">Pepnis-Casino</h1>
+	<h1 class="basicHeader">Recursino</h1>
 	<div class="text">
 		<h2>Impressum</h2>
 		Äxcel95<br>

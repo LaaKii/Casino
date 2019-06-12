@@ -9,7 +9,7 @@
 <title>FAQ</title>
 </head>
 <body class="basicBody">
-	<h1 class="basicHeader">Pepnis-Casino</h1>
+	<h1 class="basicHeader">Recursino</h1>
 	<div class="content">
 	<h2>FAQ</h2>
 		<details>

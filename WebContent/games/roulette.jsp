@@ -17,7 +17,8 @@
 	</head>
 	
 	<body class="basicBody">
-		<h1 class="basicHeader">Username: ${userBean.username}</h1>
+		<!--  <h1 class="basicHeader">Username: ${userBean.username}</h1> -->
+		<h1 class="basicHeader">Recursino</h1>
 		<form class="content" method="post" action="${pageContext.request.contextPath}/TransactionServlet">
 			<table class="content">
 				<tr>
@@ -26,6 +27,13 @@
 				</tr>
 				<tr>
 					<td><button class="basicButton" name="signin" type="submit">Absenden</button></td>
+				</tr>
+			</table>
+		</form>
+		<form class="content" method="post" action="${pageContext.request.contextPath}/LogoutServlet">
+			<table class="content">
+				<tr>
+					<td><button class="basicButton" name="signin" type="submit">Logout Session</button></td>
 				</tr>
 			</table>
 		</form>

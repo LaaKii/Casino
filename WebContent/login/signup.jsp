@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/signup.css">
 
-<%if(userBean.isSubmitted()){%>
+<%if(userBean.isSubmitted() == true){%>
 	<style>
 	#usernameInput{border-color:red}
 		<%if(userBean.checkUsername() == false){%>
@@ -60,7 +60,7 @@
 
 </head>
 <body class="basicBody">
-	<h1 class="basicHeader">PEPNIS-CASINO</h1>
+	<h1 class="basicHeader">Recursino</h1>
 	<form class="content" method="get" action="${pageContext.request.contextPath}/RegistrationServlet">
 		<table class="content">
 			<tr id="tablehead">
