@@ -23,6 +23,9 @@ public class UserDao implements DatabaseDao<UserBean>{
 		case "username":
 			sql = "Select * from user where username= '" + value.getUsername() + "'";
 			break;
+		case "email":
+			sql = "Select * from user where email= '" + value.getEmail() + "'";
+			break;
 		default:
 			break;
 		}

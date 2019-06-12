@@ -27,4 +27,24 @@ public class LoginService {
 		return userDao.createNewItem(userToRegister);
 	}
 
+	public boolean checkUserSpecifications(UserBean userBean) {
+			return (isEmailAvailable(userBean) && isUsernameAvailable(userBean));
+	}
+
+	private boolean isEmailAvailable(UserBean userbean) {
+			if (userDao.getSingleItemByValue("email", userbean) == null) {
+				return true;
+			}
+			System.out.println("Email: " + userbean.getEmail() + " is already used");
+			return false;
+	}
+	
+	private boolean isUsernameAvailable(UserBean userbean) {
+		if (userDao.getSingleItemByValue("username", userbean) == null) {
+			return true;
+		}
+		System.out.println("Username: " + userbean.getUsername() + " is already used");
+		return false;
+	}
+
 }
