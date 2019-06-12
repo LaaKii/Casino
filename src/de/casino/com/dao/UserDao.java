@@ -54,13 +54,13 @@ public class UserDao implements DatabaseDao<UserBean>{
 			}
 		}
 		
-		if (res==null) {
-			try {
-				throw new UserNotFoundException();
-			} catch (UserNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
+//		if (res==null) {
+//			try {
+//				throw new UserNotFoundException();
+//			} catch (UserNotFoundException e) {
+//				e.printStackTrace();
+//			}
+//		}
 		
 		return res;
 	}

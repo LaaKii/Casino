@@ -8,7 +8,7 @@ import de.casino.com.database.UserBean;
 
 public class LoginService {
 	
-	DatabaseDao<UserBean> userDao = new UserDao();
+	private DatabaseDao<UserBean> userDao = new UserDao();
 	
 	public boolean isUserLoginCorrect(UserBean userToCheck) {
 		List<UserBean> allUsers = userDao.getAllItems();
@@ -35,7 +35,7 @@ public class LoginService {
 			if (userDao.getSingleItemByValue("email", userbean) == null) {
 				return true;
 			}
-			System.out.println("Email: " + userbean.getEmail() + " is already used");
+			System.out.print("Email: " + userbean.getEmail() + " is already used");
 			return false;
 	}
 	
@@ -43,7 +43,7 @@ public class LoginService {
 		if (userDao.getSingleItemByValue("username", userbean) == null) {
 			return true;
 		}
-		System.out.println("Username: " + userbean.getUsername() + " is already used");
+			System.out.println("Username: " + userbean.getUsername() + " is already used");
 		return false;
 	}
 
