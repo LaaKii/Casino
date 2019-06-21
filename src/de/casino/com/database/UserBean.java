@@ -3,7 +3,6 @@ package de.casino.com.database;
 public class UserBean {
 	
 	private String username, firstname, lastname, password, email, passwordRepeated;
-	private boolean submitted = false, agbAccepted = false;
 	private int idUser;
 	
 	
@@ -12,13 +11,6 @@ public class UserBean {
 		return idUser;
 	}
 
-	public boolean isAgbAccepted() {
-		return agbAccepted;
-	}
-
-	public void setAgbAccepted(boolean agbAccepted) {
-		this.agbAccepted = agbAccepted;
-	}
 
 	public void setIdUser(int idUser) {
 		this.idUser = idUser;
@@ -33,13 +25,6 @@ public class UserBean {
 		this.email = email;
 	}
 
-	public boolean isSubmitted() {
-		return submitted;
-	}
-
-	public void setSubmitted(boolean submitted) {
-		this.submitted = submitted;
-	}
 
 	public UserBean() {
 		

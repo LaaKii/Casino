@@ -15,7 +15,7 @@
 	</head>
 	
 	<body class="basicBody">
-		<h1 class="basicHeader">Recursino</h1>
+		<h1 class="basicHeader">Rekursino</h1>
 		<form class="content" method="post" action="${pageContext.request.contextPath}/UserServlet">
 			<table class="content">
 				<tr>
