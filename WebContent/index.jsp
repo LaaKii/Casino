@@ -12,6 +12,11 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/index.css">		
+		<c:if test="${loginError != null}">
+		<style>
+			#loginError{visibility:visible}
+		</style>
+		</c:if>
 	</head>
 	
 	<body class="basicBody">
@@ -25,6 +30,9 @@
 				<tr>
 					<th style="text-align:right">Passwort:</th>
 					<td><input class="content" name="password" type="password" value="${userBean.password}"></td>
+				</tr>
+				<tr id="loginError">
+					<td id="loginErrorMessage" colspan="2"><c:out value="${loginError}"></c:out></td>
 				</tr>
 				<tr>
 					<td style="text-align:left"><a href="${pageContext.request.contextPath}/login/signup.jsp" class="basicButton">Registrieren</a></td>

@@ -51,3 +51,9 @@ input:invalid {
 	font-size:20px;
 	text-align:left;
 }
+
+#agbErrorMessage {
+	color:red;
+	font-size:20px;
+	visibility:hidden;
+}

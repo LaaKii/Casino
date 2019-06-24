@@ -42,7 +42,7 @@ public class RegistrationServlet extends HttpServlet {
 			userBean.setEmail(request.getParameter("email"));
 			
 			RequestDispatcher dispatcher;
-			if(userBean.isOk() && loginService.checkUserSpecifications(userBean))
+			if(loginService.checkUserSpecifications(userBean))
 			{	
 				userDao.createNewItem(userBean);
 				//Objekt wieder aus db holen wegen generierter ID
@@ -52,6 +52,8 @@ public class RegistrationServlet extends HttpServlet {
 			}
 			
 			else {
+				String signupError = "Benutzername bereits vergeben";
+				request.setAttribute("errorMessage", signupError);
 				dispatcher = request.getRequestDispatcher("login/signup.jsp");
 			}
 			dispatcher.forward(request, response);

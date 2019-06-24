@@ -37,7 +37,9 @@ public class LoginServlet extends HttpServlet{
 			dispatcher = request.getRequestDispatcher("Mainmenu/mainmenu.jsp");
 		else {
 			//TODO where to go
-			dispatcher = request.getRequestDispatcher("Form.jsp");
+			String loginError = "Benutzername oder Passwort falsch!";
+			request.setAttribute("loginError", loginError);
+			dispatcher = request.getRequestDispatcher("index.jsp");
 		}
 		request.getSession().setAttribute("userBean", userBean);
 		dispatcher.forward(request, response);

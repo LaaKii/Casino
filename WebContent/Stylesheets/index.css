@@ -34,4 +34,13 @@ form.content {
 			
 			a{text-decoration:none}
 			
+			#loginErrorMessage{
+				text-align:center;
+				color:red;
+				font-size:24px;
+			}
+			
+			#loginError{
+				visibility:collapse;
+			}
 				
