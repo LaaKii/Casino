@@ -33,5 +33,13 @@ CREATE TABLE casino.transactions(
   FOREIGN KEY (idKonto) REFERENCES casino.konto(idKonto)
 );
 
+CREATE TABLE casino.userLogin(
+  idUserLogin INT NOT NULL AUTO_INCREMENT,
+  idUser int,
+  loginDate date,
+  PRIMARY KEY (idUserLogin),
+  FOREIGN KEY (idUser) REFERENCES casino.user(idUser)
+);
+
 ALTER TABLE casino.transactions ADD CONSTRAINT idGameFK FOREIGN KEY (idGame) REFERENCES casino.games(idGame);
 
