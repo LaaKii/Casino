@@ -8,27 +8,59 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
 <script>
 
-	var playerCards = 0;
+	var playerCards = 0, dealerCards = 0;
+	var secondDealerCardImage = "";
 	
-	function getPlayerCard(cardName){
-		var card = document.createElement("img");
-		card.src = "../Ressources/cardImages/KartenDeckImages/Herz/" + cardName + ".png";
-		card.style.height = "150px";
-		card.style.width = "100px";
-		card.style.top = "325px";
-		card.style.right = "20px";
-		card.style.position = "absolute";
-		var table = document.getElementById("table");
-		table.appendChild(card);
-		moveTo(card, 450 - (playerCards * 20), 600 - (playerCards * 20));
-		playerCards++;
+	function startGame(){
+		var bet = document.getElementById("betInput").value;
+		document.getElementById("startGameBox").style.visibility = "hidden";
+		document.getElementById("userInput").style.visibility = "visible";
+		document.getElementById("placedBet").style.visibility = "visible";
+		document.getElementById("placedBetValue").innerHTML = bet + "$";
 	}
 	
-	function moveTo(elem, targetX, targetY){
+	function getPlayerCard(image){
+		var card = document.createElement("img");
+		card.src = "../Ressources/cardImages/KartenDeckImages/allcards/card_back.png";
+		card.style.height = "150px";
+		card.style.width = "100px";
+		card.style.top = "300px";
+		card.style.right = "20px";
+		card.style.position = "absolute";
+		document.getElementById("table").appendChild(card);
+		moveTo(card, 450 - (playerCards * 20), 500 - (playerCards++ * 20), image);
+
+	}
+	
+	function getDealerCard(image){
+		var card = document.createElement("img");
+		if(dealerCards == 1){
+			secondDealerCardImage = image;
+			image = "card_back";
+			card.id = "secondDealerCard";
+		}
+		card.src = "../Ressources/cardImages/KartenDeckImages/allcards/card_back.png";
+		card.style.height = "150px";
+		card.style.width = "100px";
+		card.style.top = "300px";
+		card.style.right = "20px";
+		card.style.position = "absolute";
+		document.getElementById("table").appendChild(card);
+		moveTo(card, 450 - (dealerCards++ * 30), 50, image);	
+		
+	}
+	
+	function turnDealerCard(){
+		if(dealerCards == 2){
+			document.getElementById("secondDealerCard").src = "../Ressources/cardImages/KartenDeckImages/allcards/" + secondDealerCardImage + ".png";
+		}
+	}
+	
+	function moveTo(elem, targetX, targetY, image){
 		var posX = parseInt(elem.style.right);	
 		var posY = parseInt(elem.style.top);
-		var stepX = (targetX - posX) / 100;
-		var stepY = (targetY - posY) / 100;
+		var stepX = (targetX - posX) / 50;
+		var stepY = (targetY - posY) / 50;
 		
 		
 		var id = setInterval(frame, 1);
@@ -40,6 +72,7 @@
 			if(stepX > 0 && stepY > 0){
 			    if (posX >= targetX || posY >= targetY) {
 					clearInterval(id);
+					elem.src = "../Ressources/cardImages/KartenDeckImages/allcards/" + image + ".png";
 					}
 			    else {
 			    	posX += stepX;
@@ -50,6 +83,7 @@
 			else if(stepX > 0 && stepY < 0){
 			    if (posX >= targetX || posY <= targetY) {
 					clearInterval(id);
+					elem.src = "../Ressources/cardImages/KartenDeckImages/allcards/" + image + ".png";
 					}
 			    else {
 			    	posX += stepX;
@@ -60,6 +94,7 @@
 			else if(stepX < 0 && stepY < 0){
 			    if (posX <= targetX || posY <= targetY) {
 					clearInterval(id);
+					elem.src = "../Ressources/cardImages/KartenDeckImages/allcards/" + image + ".png";
 					}
 			    else {
 			    	posX += stepX;
@@ -70,6 +105,7 @@
 			else if(stepX < 0 && stepY > 0){
 			    if (posX <= targetX || posY >= targetY) {
 					clearInterval(id);
+					elem.src = "../Ressources/cardImages/KartenDeckImages/allcards/" + image + ".png";
 					}
 			    else {
 			    	posX += stepX;
@@ -87,7 +123,8 @@
 
 
 #table {
-	height:800px;
+	margin-top:50px;
+	height:700px;
 	width:1000px;
 	background-color:green;
 	position:absolute;
@@ -95,16 +132,15 @@
 	margin-right:auto;
 	left:0px;
 	right:0px;
+	border:8px solid rgb(77, 51, 0);
 	border-radius:30px;
 }
 
 #cardDeck {
-	height:150px;
-	width:100px;
-	background-color:yellow;
+
 	position:absolute;
 	right:20px;
-	top:325px;
+	top:300px;
 }
 
 #userInput {
@@ -112,6 +148,7 @@
 	bottom:40px;
 	left:40px;
 	text-align:center;
+	visibility:hidden;
 }
 
 #playerCards{
@@ -119,13 +156,71 @@
 	width:130px;
 	border:4px solid grey;
 	position:absolute;
-	top:582px;
+	top:482px;
 	right:432px;
 	border-radius:30px;
 }
 
+#dealerCards {
+	height:180px;
+	width:130px;
+	border:4px solid grey;
+	position:absolute;
+	top:32px;
+	right:432px;
+	border-radius:30px;
+}
+
+#header{
+	margin-top:100px;
+	opacity: 0.4;
+}
+
+#startGameBox{
+	position:absolute;
+	top:500px;
+	right:20px;
+	padding:20px;
+	background-color:rgba(255,255,255,0.8);
+	border-radius:30px;
+	text-align:center;
+	font-size:30px;
+}
+
+#betInput{
+	border-style:none;
+	font-size:30px;
+	width:80px;
+	margin-left:10px;
+	padding:10px 20px;
+	border-radius:30px;
+}
+
+#startButton{
+	margin-top:30px;
+}
+
+#balance{
+	position:absolute;
+	top:20px;
+	left:20px;
+	padding:20px;
+	background-color:rgba(255,255,255,0.9);
+	border-radius:30px;
+	font-size:40px;
+}
+
+#placedBet{
+	position:absolute;
+	bottom:30px;
+	right:80px;
+	visibility:hidden;
+	font-size:30px;
+}
+
 .playButton{
 	margin:10px 0px;
+	width:200px;
 }
 
 
@@ -134,15 +229,26 @@
 </head>
 <body class="basicBody">
 <div id="table">
-<div></div>
-<div id="cardDeck"></div>
+<img id="header" src="../Ressources/blackjack_header.png">
+<img id="cardDeck" src="../Ressources/cardImages/KartenDeckImages/card.png" height="150px" width="100px">
 <div id="playerCards"></div>
 <div id="dealerCards"></div>
+<div id="balance">5000$</div>
+<div id="placedBet">Einsatz: <span id="placedBetValue"></span></div>
+<div id="startGameBox">
+<span>Einsatz:</span><input pattern="\d*" id="betInput" type="text" min="100" max="10000" step="100" value="100"><br>
+<button onclick="startGame()" id="startButton" class="basicButton">Spiel starten</button>
+</div>
 <div id="userInput">
 <button class="basicButton playButton" onclick="getPlayerCard('10_of_hearts')">Hit</button><br>
-<button class="basicButton playButton">Double</button><br>
-<button class="basicButton playButton">Stay</button><br>
+<button class="basicButton playButton" onclick="getDealerCard('8_of_hearts')">Double</button><br>
+<button class="basicButton playButton" onclick="turnDealerCard()">Stay</button><br>
 </div>
 </div>
+<footer>
+		<span class="basicFooter">
+			<a href="${pageContext.request.contextPath}/Mainmenu/mainmenu.jsp">Zurück</a>
+		</span>
+		</footer>
 </body>
 </html>

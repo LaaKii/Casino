@@ -48,6 +48,6 @@
 			<a href="${pageContext.request.contextPath}/others/impressum.jsp">Impressum</a>
 			<a href="${pageContext.request.contextPath}/others/faq.jsp">FAQ</a>
 		</span>
-	</footer>
+		</footer>
 	</body>
 </html>

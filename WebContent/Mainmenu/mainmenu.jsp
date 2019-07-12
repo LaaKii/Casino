@@ -9,18 +9,8 @@
 <jsp:useBean id="userBean"
 	class="de.casino.com.database.UserBean"
 	scope="session" />
-<link rel="stylesheet" href="../Stylesheets/basic.css">
-<link rel="stylesheet" href="../Stylesheets/mainmenu.css">
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
 <script type='text/javascript' src='${pageContext.request.contextPath}/javascript/jquery.mousewheel.js'></script>
-<script>
-$(document).ready(function() {
-	$('.content').mousewheel(function(e, delta) {
-	this.scrollLeft -= (delta * 30);
-	e.preventDefault();
-	});
-	});
-</script>
 <title>Hauptmenü</title>
 <script>
 $(function() {
@@ -53,7 +43,7 @@ $(function() {
 	<div class="choiceWrapper"><span id="choice">test</span></div>
 	<div class="content">
 		<a onmouseover="showTitle('Roulette')" onmouseout="hideTitle()" href="./games/roulette.jsp"><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/roulette4.png"></a>
-		<a onmouseover="showTitle('Blackjack')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/blackjack.png"></a>
+		<a onmouseover="showTitle('Blackjack')" onmouseout="hideTitle()" href="${pageContext.request.contextPath}/games/blackjack.jsp"><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/blackjack.png"></a>
 		<a onmouseover="showTitle('Slot Maschine')" onmouseout="hideTitle()" href=#><img height="150" width="250" style="padding:50px 0px" src="${pageContext.request.contextPath}/Ressources/slotmachine.jpg"></a>
 		<a onmouseover="showTitle('Profil')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/profile.png"></a>
 		<a onmouseover="showTitle('Einstellungen')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/config2.png"></a>

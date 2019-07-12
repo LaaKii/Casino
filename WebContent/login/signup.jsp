@@ -23,7 +23,7 @@
 <body class="basicBody">
 	<h1 class="basicHeader">Rekursino</h1>
 	
-	<form class="content" method="get" action="${pageContext.request.contextPath}/RegistrationServlet" onsubmit="return formCheck()" >
+	<form class="content" method="post" action="${pageContext.request.contextPath}/RegistrationServlet" onsubmit="return formCheck()" >
 		<table class="content">
 			<tr id="tablehead">
 				<td colspan="2">Registration</td>
