@@ -8,6 +8,7 @@
 <jsp:useBean id="transactionBean"
 	class="de.casino.com.database.TransactionBean"
 	scope="request" />
+
 <html>
 	<head>
 		<title>login</title>
@@ -19,6 +20,11 @@
 	<body class="basicBody">
 		<!--  <h1 class="basicHeader">Username: ${userBean.username}</h1> -->
 		<h1 class="basicHeader">Recursino</h1>
+		<!--  show current konto -->
+		<form class="content" method="get" action="${pageContext.request.contextPath}/KontoServlet">
+			<button class="basicButton" name="signin" type="submit">Show Konto</button>
+		</form>
+		
 		<form class="content" method="post" action="${pageContext.request.contextPath}/TransactionServlet">
 			<table class="content">
 				<tr>

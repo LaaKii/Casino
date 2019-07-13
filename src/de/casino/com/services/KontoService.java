@@ -33,5 +33,11 @@ public class KontoService {
 		
 		return false;
 	}
+	
+	
+	public double getKontostandOfUser(UserBean userbean) {
+		System.out.println("AKTUELLER KONTOSTAND VON " + userbean.getUsername() + kontoDao.getSingleItemByValue("idUser", getKontoByUser(userbean)).getMoney());
+		return kontoDao.getSingleItemByValue("idUser", getKontoByUser(userbean)).getMoney();
+	}
 
 }

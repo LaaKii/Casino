@@ -20,4 +20,5 @@ public class TransactionService {
 		transactionBean.setIdKonto(konto.getIdKonto());
 		return transactionDao.getSingleItemByValue("idKonto", transactionBean);
 	}
+
 }

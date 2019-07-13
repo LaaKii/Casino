@@ -2,9 +2,6 @@ package de.casino.com.services;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import de.casino.com.dao.DatabaseDao;
 import de.casino.com.dao.UserDao;
 import de.casino.com.dao.UserLoginDao;
@@ -14,7 +11,6 @@ import de.casino.com.database.UserLoginBean;
 public class LoginService {
 	
 	private DatabaseDao<UserBean> userDao = new UserDao();
-	private Logger log = LoggerFactory.getLogger(LoginService.class);
 	private DatabaseDao<UserLoginBean> loginDao = new UserLoginDao();
 	
 	public boolean updateUserLogin(UserLoginBean userLogin) {
@@ -26,7 +22,6 @@ public class LoginService {
 		
 		for (UserBean user : allUsers) {
 			if (user.getUsername().equalsIgnoreCase(userToCheck.getUsername()) && user.getPassword().equals(userToCheck.getPassword())) {
-				log.info("user authenticated");
 				return true;
 			}
 		}
