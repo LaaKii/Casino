@@ -36,10 +36,9 @@ public class KontoServlet extends HttpServlet{
 		
 		kontoBean.setMoney(kontoService.getKontostandOfUser(userService.getUserByUsername(userBean.getUsername())));
 		req.getSession().setAttribute("kontoBean", kontoBean);
-		RequestDispatcher dispatcher;
-		dispatcher = req.getRequestDispatcher("games/test.jsp");
-		dispatcher.forward(req, resp);
-		
+		resp.setContentType("text/plain");
+		resp.setCharacterEncoding("UTF-8");
+		resp.getWriter().write(Double.toString(kontoBean.getMoney()));
 	}
 	
 	@Override

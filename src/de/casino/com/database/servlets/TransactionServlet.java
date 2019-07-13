@@ -30,6 +30,7 @@ public class TransactionServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		TransactionBean transactionBean = (TransactionBean) req.getAttribute("transactionBean");
+		KontoBean kontoBeanSess = (KontoBean) req.getSession().getAttribute("kontoBean");
 		
 		if(transactionBean == null) {
 			transactionBean = new TransactionBean();
@@ -51,6 +52,9 @@ public class TransactionServlet extends HttpServlet{
 		
 		transactionService.createTransaction(gameBean, kontoBean, transactionBean.getTransactionAmount());
 		kontoService.updateKontoMoney(kontoBean);
+		
+		kontoBeanSess.setMoney(kontoBeanSess.getMoney()+transactionBean.getTransactionAmount());
+		req.getSession().setAttribute("kontoBean", kontoBeanSess);
 	}
 	
 	@Override

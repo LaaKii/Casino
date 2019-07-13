@@ -15,12 +15,23 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/index.css">		
+		<script src="https://code.jquery.com/jquery-1.10.2.js"
+		type="text/javascript"></script>
+		<script src="javascript/ajaxx.js" type="text/javascript"></script>
+		<script>
+		$(document).ready(function() {
+			$.get("/Casino/KontoServlet", function(responseText) { 
+				$("#kontostand").text(responseText); 
+			});
+		});
+		</script>
 	</head>
 	
 	<body class="basicBody">
 		<!--  <h1 class="basicHeader">Username: ${userBean.username}</h1> -->
 		<h1 class="basicHeader">Recursino</h1>
 		<!--  show current konto -->
+	    <h1 id="kontostand">Kontostand: ${kontoBean.money}</h1>
 		<form class="content" method="get" action="${pageContext.request.contextPath}/KontoServlet">
 			<button class="basicButton" name="signin" type="submit">Show Konto</button>
 		</form>
