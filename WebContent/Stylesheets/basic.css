@@ -38,13 +38,15 @@ footer{
 	margin-top:60px;
 	text-align:right;
 	margin-bottom:30px;
+	position:fixed;
+	bottom:10px;
+	right:10px;
 }
 
 .basicFooter {
 	background-color:rgba(255,255,255,0.8);
 	border-radius:30px;
 	padding:20px 20px;
-	
 }
 
 .basicFooter a {
