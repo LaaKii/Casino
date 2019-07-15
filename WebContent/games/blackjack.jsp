@@ -17,6 +17,7 @@
 		document.getElementById("userInput").style.visibility = "visible";
 		document.getElementById("placedBet").style.visibility = "visible";
 		document.getElementById("placedBetValue").innerHTML = bet + "$";
+		
 	}
 	
 	function getPlayerCard(image){
@@ -120,6 +121,21 @@
 	}
 </script>
 <style>
+
+.animation{
+	animation-duration:5s;
+	animation-name:move;
+}
+
+@keyframe move{
+	from{
+		top:300px;
+		right:20px;
+	}
+	to{
+		
+	}
+}
 
 
 #table {
@@ -240,8 +256,8 @@
 <button onclick="startGame()" id="startButton" class="basicButton">Spiel starten</button>
 </div>
 <div id="userInput">
-<button class="basicButton playButton" onclick="getPlayerCard('10_of_hearts')">Hit</button><br>
-<button class="basicButton playButton" onclick="getDealerCard('8_of_hearts')">Double</button><br>
+<button class="basicButton playButton" onclick="getPlayerCard('ten_of_hearts')">Hit</button><br>
+<button class="basicButton playButton" onclick="getDealerCard('eight_of_hearts')">Double</button><br>
 <button class="basicButton playButton" onclick="turnDealerCard()">Stay</button><br>
 </div>
 </div>
