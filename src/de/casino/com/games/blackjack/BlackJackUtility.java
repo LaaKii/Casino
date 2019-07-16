@@ -1,4 +1,4 @@
-package de.casino.com.games;
+package de.casino.com.games.blackjack;
 
 public class BlackJackUtility {
 

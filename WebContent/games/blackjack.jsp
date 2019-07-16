@@ -6,6 +6,8 @@
 <meta charset="ISO-8859-1">
 <title>Blackjack</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"
+		type="text/javascript"></script>
 <script>
 
 	var playerCards = 0, dealerCards = 0;
@@ -17,6 +19,11 @@
 		document.getElementById("userInput").style.visibility = "visible";
 		document.getElementById("placedBet").style.visibility = "visible";
 		document.getElementById("placedBetValue").innerHTML = bet + "$";
+		
+
+		$.get("/Casino/BlackJackServlet?startgame=true", function(responseText) { 
+			alert(responseTest);
+		});
 		
 	}
 	
