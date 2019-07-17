@@ -53,11 +53,18 @@ public class BlackJackBean {
 		this.cards = cards;
 	}
 	
-	BlackJackBean(){
+	public BlackJackBean(){
 		deck = new BlackJackDeck();
 		player = new BlackJackPlayer();
 		dealer = new BlackJackPlayer();
 		help = new BlackJackUtility();
 	}
+	@Override
+	public String toString() {
+		return "BlackJackBean [cards=" + cards + ", player=" + player + ", dealer=" + dealer
+				+ ", message=" + message + ", count=" + count + "]";
+	}
+	
+	
 
 }

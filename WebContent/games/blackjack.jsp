@@ -75,6 +75,23 @@
 		});	
 	})
 	
+	$(document).ready(function() {
+		$("#doubleButton").click(function(){
+			alert("double");
+			$.get("/Casino/BlackJackServlet?game=double", function(responseText) { 
+				var arrayOfStrings = responseText.split(";");
+				alert(responseText);
+				for(i in arrayOfStrings){
+					var temp = arrayOfStrings[i].split("=");
+					if(temp[0].indexOf("playercard") != -1){
+						getPlayerCard(temp[1]);
+					}
+				}
+			});
+			turnDealerCard();
+		});
+	});
+	
 	function getPlayerCard(image){
 		var card = document.createElement("img");
 		card.src = "../Ressources/cardImages/KartenDeckImages/allcards/card_back.png";

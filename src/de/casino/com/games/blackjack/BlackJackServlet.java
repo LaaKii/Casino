@@ -29,31 +29,13 @@ public class BlackJackServlet extends HttpServlet {
 			dealer.addCard(card);
 			response += "dealercard=" + card.getFaceValue() + "_of_" + card.getSuit() + ";";
 		}
-	}
-
-	private void hit(BlackJackBean blackJackBean) {
-		response = "";
-		BlackJackDeck deck = blackJackBean.getDeck();
-		BlackJackPlayer player = blackJackBean.getPlayer();
-		BlackJackUtility help = blackJackBean.getHelp();
-		BlackJackCards card = deck.dealCard();
-		player.addCard(card);
-		response += "playercard=" + card.getFaceValue() + "_of_" + card.getSuit() + ";";
-		if (help.checkBust(player)) {
-			// message = "Busted ! You lose !";
-		}
-	}
-
-	private void stay(BlackJackBean blackJackBean) {
-		BlackJackDeck deck = blackJackBean.getDeck();
-		BlackJackPlayer dealer = blackJackBean.getDealer();
-		BlackJackCards card;
-		card = deck.dealCard();
-		dealer.addCard(card);
-//		blackJackBean.setDealer(dealer);
-//		req.getSession().setAttribute("blackJackBean", blackJackBean);
-		response += "dealercard=" + card.getFaceValue() + "_of_" + card.getSuit() + ";";
-		System.out.println("Inside stay");
+		blackJackBean.setDealer(dealer);
+		blackJackBean.setPlayer(player);
+		blackJackBean.setDeck(deck);
+		blackJackBean.setCards(card);
+		req.getSession().setAttribute("blackJackBean", blackJackBean);
+		System.out.println("Setup new game:");
+		System.out.println(((BlackJackBean)req.getSession().getAttribute("blackJackBean")));
 		this.resp.setContentType("text/plain");
 		this.resp.setCharacterEncoding("UTF-8");
 		try {
@@ -64,13 +46,53 @@ public class BlackJackServlet extends HttpServlet {
 		}
 	}
 
+	private void hit(BlackJackBean blackJackBean) {
+		response = "";
+		BlackJackDeck deck = blackJackBean.getDeck();
+		BlackJackPlayer player = blackJackBean.getPlayer();
+		BlackJackCards card = deck.dealCard();
+		player.addCard(card);
+		response += "playercard=" + card.getFaceValue() + "_of_" + card.getSuit() + ";";
+		this.resp.setContentType("text/plain");
+		this.resp.setCharacterEncoding("UTF-8");
+		try {
+			this.resp.getWriter().write(response);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void stay(BlackJackBean blackJackBean) {
+		response="";
+		BlackJackDeck deck = blackJackBean.getDeck();
+		BlackJackPlayer dealer = blackJackBean.getDealer();
+		BlackJackCards card;
+		card = deck.dealCard();
+		dealer.addCard(card);
+		response += "dealercard=" + card.getFaceValue() + "_of_" + card.getSuit() + ";";
+		this.resp.setContentType("text/plain");
+		this.resp.setCharacterEncoding("UTF-8");
+		try {
+			this.resp.getWriter().write(response);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void goDouble(BlackJackBean blackJackBean) {
+		hit(blackJackBean);
+		endGame();
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		this.resp=resp;
 		this.req=req;
 		
-		BlackJackBean blackJackBean = (BlackJackBean) req.getAttribute("blackJackBean");
+		BlackJackBean blackJackBean = ((BlackJackBean) req.getSession().getAttribute("blackJackBean"));
 		if (blackJackBean == null) {
 			blackJackBean = new BlackJackBean();
 			req.setAttribute("blackJackBean", blackJackBean);
@@ -78,8 +100,6 @@ public class BlackJackServlet extends HttpServlet {
 
 		String request = "";
 		request = req.getParameter("game");
-		String request2 = req.getParameter("action");
-		System.out.println(request);
 		switch (request) {
 		case "go":
 			System.out.println("Go clicked");
@@ -89,29 +109,53 @@ public class BlackJackServlet extends HttpServlet {
 		case "hit":
 			System.out.println("Hit clicked");
 			hit(blackJackBean);
+			System.out.println("Player hand: " + blackJackBean.getPlayer().getValueOfHand());
 			break;
 			
 		case "stay":
-			System.out.println("Stay clicked");
+			System.out.println("Dealer hand: "+ blackJackBean.getDealer().getValueOfHand());
 			while (blackJackBean.getDealer().getValueOfHand()<17) {
-				System.out.println("Dealer hand: "+ blackJackBean.getDealer().getValueOfHand());
 				stay(blackJackBean);	
+				System.out.println("Dealer hand after draw: "+ blackJackBean.getDealer().getValueOfHand());
 			}
+			endGame();
+			
+			
+			req.getSession().setAttribute("BlackJackBean", null);
 			break;
+			
+		case "double":
+			System.out.println("double clicked");
+			goDouble(blackJackBean);
 		}
-
-		if (request != null && request.equals("go")) {
-			setupNewGame(blackJackBean);
+		
+		if (drawToMuch(blackJackBean)) {
+			endGame();
 		}
-
-		else if (request2 != null && request2.equals("hit")) {
-			hit(blackJackBean);
-		}
-
+			
+		//TODO GANZ DICKES TODO, IRGENDWIE MUSS DAS MIT DEM SESSION SCOPE GEREGELT WERDEN. SEITE NEU LADEN UND MAN HAT IMMERNOCH GLEICHE KARTEN
 		req.getSession().setAttribute("BlackJackBean", blackJackBean);
-		this.resp.setContentType("text/plain");
-		this.resp.setCharacterEncoding("UTF-8");
-		this.resp.getWriter().write(response);
+
 
 	}
+	
+	private boolean drawToMuch(BlackJackBean blackJackBean) {
+		if (blackJackBean.getPlayer().getValueOfHand()>21) {
+			return true;
+		}
+		return false;
+	}
+	
+	private void endGame() {
+		response="gameFinished";
+		this.resp.setContentType("text/plain");
+		this.resp.setCharacterEncoding("UTF-8");
+		try {
+			this.resp.getWriter().write(response);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

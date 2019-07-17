@@ -60,5 +60,13 @@ public class BlackJackCards {
 	public void setImage(Image image) {
 		this.image = image;
 	}
+
+
+	@Override
+	public String toString() {
+		return "BlackJackCards [suit=" + suit + ", faceValue=" + faceValue + "]";
+	}
+	
+	
 	
 }

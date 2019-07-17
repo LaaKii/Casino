@@ -27,5 +27,7 @@ public class BlackJackDeck {
 		index = (int)(Math.random()*deck.size()); 
 		return deck.get(index);		
 	}
+	
+	
 			
 }
