@@ -60,6 +60,8 @@ public class BlackJackGui {
 		message = "";
 		count = "";
 		gameOn = true;
+		
+		
 	}
 
 	class NewGameListener implements ActionListener {

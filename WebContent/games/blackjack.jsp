@@ -13,20 +13,50 @@
 	var playerCards = 0, dealerCards = 0;
 	var secondDealerCardImage = "";
 	
-	function startGame(){
-		var bet = document.getElementById("betInput").value;
-		document.getElementById("startGameBox").style.visibility = "hidden";
-		document.getElementById("userInput").style.visibility = "visible";
-		document.getElementById("placedBet").style.visibility = "visible";
-		document.getElementById("placedBetValue").innerHTML = bet + "$";
-		
-
-		$.get("/Casino/BlackJackServlet?startgame=true", function(responseText) { 
-			alert(responseTest);
-		});
-		
-	}
 	
+	
+	
+	$(document).ready(function() {
+		$("#startButton").click(function(){
+			var bet = document.getElementById("betInput").value;
+			document.getElementById("startGameBox").style.visibility = "hidden";
+			document.getElementById("userInput").style.visibility = "visible";
+			document.getElementById("placedBet").style.visibility = "visible";
+			document.getElementById("placedBetValue").innerHTML = bet + "$";
+			$.get("/Casino/BlackJackServlet?game=go", function(responseText) { 
+				var arrayOfStrings = responseText.split(";");
+				for(i in arrayOfStrings){
+					var temp = arrayOfStrings[i].split("=");
+					
+					if(temp[0].indexOf("dealercard") != -1){
+						getDealerCard(temp[1]);
+					}
+					
+					else if(temp[0].indexOf("playercard") != -1){
+						getPlayerCard(temp[1]);
+					}
+				}
+			});
+		});
+	});
+	
+
+	$(document).ready(function() {
+		$("#hitButton").click(function(){
+			alert("click");
+			$.get("/Casino/BlackJackServlet?game=hit", function(responseText) { 
+				var arrayOfStrings = responseText.split(";");
+				alert(responseText);
+				for(i in arrayOfStrings){
+					var temp = arrayOfStrings[i].split("=");
+					if(temp[0].indexOf("playercard") != -1){
+						getPlayerCard(temp[1]);
+					}
+				}
+			});
+		});
+	});
+
 	function getPlayerCard(image){
 		var card = document.createElement("img");
 		card.src = "../Ressources/cardImages/KartenDeckImages/allcards/card_back.png";
@@ -260,12 +290,12 @@
 <div id="placedBet">Einsatz: <span id="placedBetValue"></span></div>
 <div id="startGameBox">
 <span>Einsatz:</span><input pattern="\d*" id="betInput" type="text" min="100" max="10000" step="100" value="100"><br>
-<button onclick="startGame()" id="startButton" class="basicButton">Spiel starten</button>
+<button id="startButton" class="basicButton">Spiel starten</button>
 </div>
 <div id="userInput">
-<button class="basicButton playButton" onclick="getPlayerCard('ten_of_hearts')">Hit</button><br>
-<button class="basicButton playButton" onclick="getDealerCard('eight_of_hearts')">Double</button><br>
-<button class="basicButton playButton" onclick="turnDealerCard()">Stay</button><br>
+<button id="hitButton" class="basicButton playButton">Hit</button><br>
+<button id="doubleButton" class="basicButton playButton">Double</button><br>
+<button id="stayButton" class="basicButton playButton"">Stay</button><br>
 </div>
 </div>
 <footer>
