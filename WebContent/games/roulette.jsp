@@ -21,7 +21,9 @@
 		<script>
 		
 		var black = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35];
-		function go(){
+		
+		window.onload = function(){
+			
 		for(var i = 2; i < 5;i++){
 			for(var j = 1; j < 13;j++){
 				var data = document.createElement("td");
@@ -36,32 +38,41 @@
 				data.innerHTML = num;
 				data.setAttribute("class", "num");
 				data.id = "num" + num;
-				data.addEventListener("mouseover", mouseoverEvent)
 				document.getElementById("row" + i).appendChild(data);
+				data.addEventListener("click", clickEvent);
 			}
 			var data = document.createElement("td");
 			data.innerHTML = "2to1"
-				document.getElementById("row" + i).appendChild(data);
-		}
+			data.id = "2to1row" + i;
+			data.addEventListener("click", clickEvent);
+			document.getElementById("row" + i).appendChild(data);
 		}
 		
-		function mouseOver(){
+		var elem = document.getElementsByClassName("click");;
+		for(var i = 0; i < elem.length; i++){
+			elem[i].addEventListener("click", clickEvent);
 			
+		}
+		
+		}
+		
+		function clickEvent(){
+			var bet = document.getElementById("betInput").value;
+			var profit = document.getElementById("profitValue");
+			if(this.id === "black"){
+				profitValue.innerHTML = bet * 2;
+			}
+			//alert(this);
 		}
 
-		function setSpeed(speed){
+		function start(){
 			var style =  document.createElement("style");
-			var keyframes = ".rotate{animation: rotation duration infinite linear;animation-fill-mode:both;}";
-			
-			style.innerHTML = keyframes.replace("duration", speed + "s");
+			var rotate = ".rotate{animation: rotation 2s 1 linear;animation-fill-mode:both;}";
+			style.innerHTML = rotate;
 			document.getElementsByTagName("head")[0].appendChild(style);
 			
-		}
-		var v = 2;
-		function start(){
-			setSpeed(v);
 			document.getElementById("wheel").setAttribute("class", "rotate");
-			setInterval(move, 1000);
+			
 			
 			/*for(var i = 0; i < 101; i++){
 				if(i < 100){
@@ -87,12 +98,53 @@
 		
 		
 		<style>
+		
+			#bet{
+				position:absolute;
+				bottom:30px;
+				right:400px;
+				background-color:rgba(255,255,255,0.9);
+				border-radius:30px;
+				padding:20px;
+				font-size:30px;
+			}
+			
+			#betInput{
+				border-style:none;
+				font-size:30px;
+				width:80px;
+				padding:10px 20px;
+				border-radius:30px;
+				margin-top:10px;
+			}
+			
+			#profit{
+				position:absolute;
+				bottom:30px;
+				right:30px;
+				background-color:rgba(255,255,255,0.9);
+				border-radius:30px;
+				padding:20px;
+				font-size:30px;
+				text-align:center;
+			}
+			
+			#profitValue{
+				//background-color:white;
+				//border-radius:30px;
+			}
+		
+			#wheel{
+				position:absolute;		
+				top:50px;
+				left:50px;
+			}
 			
 
 			#table {
 				margin-top:50px;
 				height:700px;
-				width:1000px;
+				width:1200px;
 				background-color:green;
 				position:absolute;
 				margin-left:auto;
@@ -103,16 +155,19 @@
 				border-radius:30px;
 			}
 			
-			#numTable, tr, td{
+			td{
 				border:3px solid white;
+				
 			}
 			
 			#numTable{
 				 border-collapse: collapse;
 				 Color:white;
 				 text-align:center;
-				 border:3px solid white;
-				 border-radius:30px;
+				 font-size:25px;
+				 position:absolute;
+				 top:50px;
+				 right:50px;
 			}
 			
 			.num{
@@ -121,13 +176,18 @@
 				padding:0px;
 			}
 			
+			#numTable tr td:hover{
+				color:yellow;
+				cursor:pointer;
+			}
+			
 			
 			@keyframes rotation {
 				from{
 					transform:rotate(0deg);
 				}
 				to{
-					transform:rotate(359deg);
+					transform:rotate(3590deg);
 				}
 			}
 			
@@ -136,22 +196,31 @@
 	
 	<body class="basicBody">
 	<div id="table">
+	<div id="bet">
+	Einsatz:<br>
+	<input id="betInput" value="100">
+	</div>
+	
+	<div id="profit">
+	Gewinn:<br>
+	<span id="profitValue">-</span>
+	</div>
 	<table id="numTable">
 		<tr id="row1">
-		<td colspan="4">1-12</td>
-		<td colspan="4">13-24</td>
-		<td colspan="4">25-36</td>
+		<td id="1-12" class="click" colspan="4">1-12</td>
+		<td id="13-24" class="click" colspan="4">13-24</td>
+		<td id="25-36" class="click" colspan="4">25-36</td>
 		</tr>
 		<tr id="row2"></tr>
 		<tr id="row3"></tr>
 		<tr id="row4"></tr>
 		<tr id="row5">
-		<td colspan="2">1-18</td>
-		<td colspan="2">Even</td>
-		<td colspan="2">red</td>
-		<td colspan="2">black</td>
-		<td colspan="2">odd</td>
-		<td colspan="2">19-36</td>
+		<td id="1-18" class="click" colspan="2">1-18</td>
+		<td id="even" class="click" colspan="2">Even</td>
+		<td id="red" class="click" colspan="2">red</td>
+		<td id="black" class="click" colspan="2">black</td>
+		<td id="odd" class="click" colspan="2">odd</td>
+		<td id="19-36" class="click" colspan="2">19-36</td>
 		</tr>
 	</table>
 		<img id="wheel" height="250" width="250" src="${pageContext.request.contextPath}/Ressources/roulette4.png">
