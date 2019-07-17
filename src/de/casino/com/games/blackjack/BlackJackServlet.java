@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.casino.com.games.blackjack.BlackJackUtility.Winner;
+
 @WebServlet("/BlackJackServlet")
 public class BlackJackServlet extends HttpServlet {
 
 	private String response = "";
 	private HttpServletResponse resp;
 	private HttpServletRequest req;
+	private boolean endGameCalled=false;
 	
 	private void setupNewGame(BlackJackBean blackJackBean) {
 		response = "";
@@ -83,7 +86,7 @@ public class BlackJackServlet extends HttpServlet {
 	
 	private void goDouble(BlackJackBean blackJackBean) {
 		hit(blackJackBean);
-		endGame();
+		endGame(blackJackBean);
 	}
 
 	@Override
@@ -118,7 +121,7 @@ public class BlackJackServlet extends HttpServlet {
 				stay(blackJackBean);	
 				System.out.println("Dealer hand after draw: "+ blackJackBean.getDealer().getValueOfHand());
 			}
-			endGame();
+			endGame(blackJackBean);
 			
 			
 			req.getSession().setAttribute("BlackJackBean", null);
@@ -130,13 +133,15 @@ public class BlackJackServlet extends HttpServlet {
 		}
 		
 		if (drawToMuch(blackJackBean)) {
-			endGame();
+			endGame(blackJackBean);
 		}
 			
 		//TODO GANZ DICKES TODO, IRGENDWIE MUSS DAS MIT DEM SESSION SCOPE GEREGELT WERDEN. SEITE NEU LADEN UND MAN HAT IMMERNOCH GLEICHE KARTEN
-		req.getSession().setAttribute("BlackJackBean", blackJackBean);
-
-
+		if (!endGameCalled) {
+			req.getSession().setAttribute("blackJackBean", blackJackBean);	
+		}else {
+			req.getSession().setAttribute("blackJackBean", null);
+		}
 	}
 	
 	private boolean drawToMuch(BlackJackBean blackJackBean) {
@@ -146,8 +151,13 @@ public class BlackJackServlet extends HttpServlet {
 		return false;
 	}
 	
-	private void endGame() {
-		response="gameFinished";
+	private void endGame(BlackJackBean blackJackBean) {
+		response="gameWinner=";
+		
+		BlackJackUtility utility = new BlackJackUtility();
+		System.out.println("final dealer hand: " + blackJackBean.getDealer().getValueOfHand());
+		System.out.println("final player hand: " + blackJackBean.getPlayer().getValueOfHand());
+		response+=utility.determineWinner(blackJackBean.getPlayer(), blackJackBean.getDealer()).name();
 		this.resp.setContentType("text/plain");
 		this.resp.setCharacterEncoding("UTF-8");
 		try {
@@ -156,6 +166,7 @@ public class BlackJackServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		endGameCalled=true;
 	}
 	
 }
