@@ -137,11 +137,11 @@ public class BlackJackServlet extends HttpServlet {
 		}
 			
 		//TODO GANZ DICKES TODO, IRGENDWIE MUSS DAS MIT DEM SESSION SCOPE GEREGELT WERDEN. SEITE NEU LADEN UND MAN HAT IMMERNOCH GLEICHE KARTEN
-		if (!endGameCalled) {
+//		if (!endGameCalled) {
 			req.getSession().setAttribute("blackJackBean", blackJackBean);	
-		}else {
-			req.getSession().setAttribute("blackJackBean", null);
-		}
+//		}else {
+//			req.getSession().setAttribute("blackJackBean", null);
+//		}
 	}
 	
 	private boolean drawToMuch(BlackJackBean blackJackBean) {
