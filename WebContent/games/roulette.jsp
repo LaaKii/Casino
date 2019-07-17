@@ -43,8 +43,9 @@
 			}
 			var data = document.createElement("td");
 			data.innerHTML = "2to1"
+			data.style.width = "80px";
 			data.id = "2to1row" + i;
-			data.addEventListener("click", clickEvent);
+			data.setAttribute("class", "click");
 			document.getElementById("row" + i).appendChild(data);
 		}
 		
@@ -56,12 +57,70 @@
 		
 		}
 		
+		var chosenNums = [];
 		function clickEvent(){
+			
+			
+			
 			var bet = document.getElementById("betInput").value;
 			var profit = document.getElementById("profitValue");
-			if(this.id === "black"){
-				profitValue.innerHTML = bet * 2;
+			var winFactor = 1;
+			var id = this.id;
+			
+			if(id.indexOf("num") != -1){
+				var elem = document.getElementsByClassName("click");
+				for(var i = 0; i < elem.length; i++){
+					elem[i].style.fontWeight = "normal";
+					elem[i].style.color = "white";
+				}
+				chosenNums.push(id.innerHTML);
+				winFactor = 36 / chosenNums.length;
 			}
+			else{
+				var elem = document.getElementsByClassName("num");
+				for(var i = 0; i < elem.length; i++){
+					elem[i].style.fontWeight = "normal";
+					elem[i].style.color = "white";
+				}
+				var elem = document.getElementsByClassName("click");
+				for(var i = 0; i < elem.length; i++){
+					elem[i].style.fontWeight = "normal";
+					elem[i].style.color = "white";
+				}
+				chosenNums = [];
+			
+			switch(id){
+			case "black":	winFactor = 2;
+							break;
+			case "red":		winFactor = 2;
+							break;
+			case "even":	winFactor = 2;
+							break;
+			case "odd":		winFactor = 2;
+							break;
+			case "1-18":	winFactor = 2;
+							break;
+			case "19-36":	winFactor = 2;
+							break;
+			case "1-12":	winFactor = 3;
+							break;
+			case "13-24":	winFactor = 3;
+							break;
+			case "25-36":	winFactor = 3;
+							break;
+			case "2to1row2":	winFactor = 3;
+						break;
+			case "2to1row3":	winFactor = 3;
+						break;
+			case "2to1row4":	winFactor = 3;
+						break;
+			}
+			}
+			this.style.color = "yellow";
+			this.style.fontWeight = "bold";
+			profitValue.innerHTML = Math.round(bet * winFactor) + "$";
+			
+			
 			//alert(this);
 		}
 
@@ -181,6 +240,12 @@
 				cursor:pointer;
 			}
 			
+			#startButton{
+				position:absolute;
+				bottom:50px;
+				left:50px;
+			}
+			
 			
 			@keyframes rotation {
 				from{
@@ -198,7 +263,7 @@
 	<div id="table">
 	<div id="bet">
 	Einsatz:<br>
-	<input id="betInput" value="100">
+	<input id="betInput" value="100">$
 	</div>
 	
 	<div id="profit">
@@ -223,8 +288,8 @@
 		<td id="19-36" class="click" colspan="2">19-36</td>
 		</tr>
 	</table>
-		<img id="wheel" height="250" width="250" src="${pageContext.request.contextPath}/Ressources/roulette4.png">
-		<button onclick="go()">click me</button>
+		<img id="wheel" height="250" width="250" src="${pageContext.request.contextPath}/Ressources/roulette.png">
+		<button class="basicButton" id="startButton" onclick="start()">Spiel starten</button>
 	</div>
 		
 		
