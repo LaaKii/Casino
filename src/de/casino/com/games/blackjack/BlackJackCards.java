@@ -8,7 +8,7 @@ public class BlackJackCards {
 	public enum Suit {clubs, spades, hearts, diamonds}
 	
 	public enum FaceValue {
-		ace(1), king(10), queen(10), jack(10), ten(10), nine(9), 
+		ace(11), king(10), queen(10), jack(10), ten(10), nine(9), 
 		eight(8), seven(7), six(6), five(5), four(4), three(3), two(2);
 		private int intValue;
 	
