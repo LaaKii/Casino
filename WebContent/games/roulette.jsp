@@ -21,6 +21,9 @@
 		<script>
 		
 		var black = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35];
+		var red = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
+		var wheelNums = [0,26,3,35,12,28,7,29,18,22,9,31,14,20,1,33,16,24,5,10,23,8,30,11,36,13,34,6,27,17,25,2,21,4,19,15,32,0];
+		var lastAngle = 323;
 		
 		window.onload = function(){
 			
@@ -54,18 +57,24 @@
 			elem[i].addEventListener("click", clickEvent);
 			
 		}
-		
+		//document.getElementById("startButton").disabled = "true";
+		//document.getElementById("betInput").addEventListener("onkeyup", refreshProfit);
 		}
 		
 		var chosenNums = [];
+		var check = false;
+		var bet = 100;
+		var profit = document.getElementById("profitValue");
+		var winFactor = 0;
 		function clickEvent(){
 			
 			
 			
-			var bet = document.getElementById("betInput").value;
-			var profit = document.getElementById("profitValue");
-			var winFactor = 1;
+			bet = document.getElementById("betInput").value;
 			var id = this.id;
+			
+			if(check)chosenNums = [];
+			check = false;
 			
 			if(id.indexOf("num") != -1){
 				var elem = document.getElementsByClassName("click");
@@ -73,8 +82,26 @@
 					elem[i].style.fontWeight = "normal";
 					elem[i].style.color = "white";
 				}
-				chosenNums.push(id.innerHTML);
-				winFactor = 36 / chosenNums.length;
+				var num = Number(this.innerHTML);
+				if(chosenNums.indexOf(num) != -1){
+					chosenNums.splice(chosenNums.indexOf(num), 1);
+					if(chosenNums.length != 0){
+					winFactor = 36 / chosenNums.length;
+					}
+					else{
+						winFactor = 0;
+					}
+					this.style.color = "white";
+					this.style.fontWeight = "normal";
+				}
+				else{
+					chosenNums.push(num);
+					winFactor = 36 / chosenNums.length;
+					this.style.color = "yellow";
+					this.style.fontWeight = "bold";
+				}
+				
+				
 			}
 			else{
 				var elem = document.getElementsByClassName("num");
@@ -87,70 +114,125 @@
 					elem[i].style.fontWeight = "normal";
 					elem[i].style.color = "white";
 				}
+				check = true;
 				chosenNums = [];
-			
 			switch(id){
 			case "black":	winFactor = 2;
+							chosenNums = black;
 							break;
 			case "red":		winFactor = 2;
+							chosenNums = red;
 							break;
 			case "even":	winFactor = 2;
+							for(var i = 1; i < 37; i++){
+								if(i % 2 == 0){
+									chosenNums.push(i);
+								}
+							}
 							break;
 			case "odd":		winFactor = 2;
+							for(var i = 1; i < 37; i++){
+								if(i % 2 != 0){
+									chosenNums.push(i);
+								}
+							}
 							break;
 			case "1-18":	winFactor = 2;
+							for(var i = 1; i < 19; i++){
+								chosenNums.push(i);
+							}
 							break;
 			case "19-36":	winFactor = 2;
+							for(var i = 19; i < 37; i++){
+								chosenNums.push(i);
+							}
 							break;
 			case "1-12":	winFactor = 3;
+							for(var i = 1; i < 13; i++){
+								chosenNums.push(i);
+							}
 							break;
 			case "13-24":	winFactor = 3;
+							for(var i = 13; i < 25; i++){
+								chosenNums.push(i);
+							}
 							break;
 			case "25-36":	winFactor = 3;
+							for(var i = 25; i < 37; i++){
+								chosenNums.push(i);
+							}
 							break;
 			case "2to1row2":	winFactor = 3;
-						break;
+								for(var i = 1; i < 13; i++){
+									chosenNums.push(i*3);
+								}
+								break;
 			case "2to1row3":	winFactor = 3;
-						break;
+								for(var i = 1; i < 13; i++){
+									chosenNums.push(i*3-1);
+								}
+								break;
 			case "2to1row4":	winFactor = 3;
-						break;
-			}
+								for(var i = 1; i < 13; i++){
+									chosenNums.push(i*3-2);
+								}
+								break;
 			}
 			this.style.color = "yellow";
 			this.style.fontWeight = "bold";
-			profitValue.innerHTML = Math.round(bet * winFactor) + "$";
 			
+			}
+			
+			
+			profitValue.innerHTML = "Gewinn: " + Math.round(bet * winFactor) + "$";
+			//document.getElementById("startButton").disabled = "false";
 			
 			//alert(this);
 		}
 
 		function start(){
+			var wheel = document.getElementById("wheel");
+			var angle = Math.floor(Math.random() * 360);
 			var style =  document.createElement("style");
-			var rotate = ".rotate{animation: rotation 2s 1 linear;animation-fill-mode:both;}";
-			style.innerHTML = rotate;
-			document.getElementsByTagName("head")[0].appendChild(style);
-			
-			document.getElementById("wheel").setAttribute("class", "rotate");
-			
-			
-			/*for(var i = 0; i < 101; i++){
-				if(i < 100){
-					setTimeout(function(){
-						setSpeed(2 + (0.1 * i));
-					}, 2000 + (50*i));
-				}
-				else{
-					setTimeout(function(){
-						setSpeed(20);
-					}, 2000 + (50*i));
-				}
-			}*/
+			style.id="animationStyle";
+			var rotate = ".rotate{animation: rotation 5s 1 linear;animation-fill-mode:both;animation-timing-function: ease-out;}";
+			var keyframe = "@keyframes rotation {from{transform:rotate(/startAngle/deg);}to{transform:rotate(/angle/deg);}}" + rotate;
+			style.innerHTML = keyframe.replace("/angle/", 1800 + angle + 323).replace("/startAngle/", lastAngle);
+			lastAngle = 323 + angle;
+			document.getElementsByTagName("head")[0].appendChild(style);	
+			wheel.addEventListener("animationend", wheelStop);
+			wheel.setAttribute("class", "rotate");
 
 		}
 		
-		function move(){
-			setSpeed(++v);
+		function wheelStop(){
+			document.getElementById("animationStyle").remove();
+			var wheel = document.getElementById("wheel");
+			wheel.style.transform = "rotate(" + lastAngle + "deg)";
+			
+			var temp = 360/37.0;
+			var num = wheelNums[Math.round((lastAngle - 323) / temp)];
+			if(chosenNums.indexOf(num) != -1){
+				alert("win" + num);
+			}
+			else{
+				alert("lose" + num);
+			}
 		}
+		
+		function refreshProfit(){
+			bet = document.getElementById("betInput").value;
+			profitValue.innerHTML = "Gewinn: " + Math.round(bet * winFactor) + "$";
+		}
+		
+		/*$(document).ready(function(){
+			function getBalance(){
+				$.get("/Casino/TransactionServlet?game=stay", function(responseText) { 
+
+				});
+			});	
+		})*/
+		
 		</script>
 		
 		
@@ -174,36 +256,36 @@
 				width:80px;
 				padding:10px 20px;
 				border-radius:30px;
-				margin-top:10px;
 			}
 			
 			#profit{
 				position:absolute;
+				width:280px;
 				bottom:30px;
 				right:30px;
 				background-color:rgba(255,255,255,0.9);
 				border-radius:30px;
-				padding:20px;
+				padding:30px 20px;
 				font-size:30px;
-				text-align:center;
+				//text-align:center;
 			}
 			
 			#profitValue{
-				//background-color:white;
-				//border-radius:30px;
+				
 			}
 		
 			#wheel{
 				position:absolute;		
-				top:50px;
+				top:125px;
 				left:50px;
+				transform:rotate(323deg);
 			}
 			
 
 			#table {
 				margin-top:50px;
 				height:700px;
-				width:1200px;
+				width:1300px;
 				background-color:green;
 				position:absolute;
 				margin-left:auto;
@@ -225,7 +307,7 @@
 				 text-align:center;
 				 font-size:25px;
 				 position:absolute;
-				 top:50px;
+				 top:150px;
 				 right:50px;
 			}
 			
@@ -243,32 +325,44 @@
 			#startButton{
 				position:absolute;
 				bottom:50px;
-				left:50px;
+				left:160px;
+				//diabled:disabled;
+			}
+			
+			#arrow{
+				fonz-size:20px;
+				position:absolute;
+				top:75px;
+				left:225px;
+				transform:rotate(180deg);
+			}
+			
+			#balance {
+				position: absolute;
+				top: 30px;
+				right: 30px;
+				padding: 20px;
+				background-color: rgba(255, 255, 255, 0.9);
+				border-radius: 30px;
+				font-size: 40px;
 			}
 			
 			
-			@keyframes rotation {
-				from{
-					transform:rotate(0deg);
-				}
-				to{
-					transform:rotate(3590deg);
-				}
-			}
 			
 		</style>
 	</head>
 	
 	<body class="basicBody">
 	<div id="table">
+	<div id="balance">5000$</div>
 	<div id="bet">
-	Einsatz:<br>
-	<input id="betInput" value="100">$
+	Einsatz: 
+	<input id="betInput" value="100" onkeyup="refreshProfit()">$
 	</div>
-	
+	<img height="50" width="50" src="${pageContext.request.contextPath}/Ressources/arrow.png" id="arrow">
 	<div id="profit">
-	Gewinn:<br>
-	<span id="profitValue">-</span>
+	 
+	<span id="profitValue">Gewinn: -</span>
 	</div>
 	<table id="numTable">
 		<tr id="row1">
@@ -288,10 +382,14 @@
 		<td id="19-36" class="click" colspan="2">19-36</td>
 		</tr>
 	</table>
-		<img id="wheel" height="250" width="250" src="${pageContext.request.contextPath}/Ressources/roulette.png">
+		<img id="wheel" height="400" width="400" src="${pageContext.request.contextPath}/Ressources/roulette2.png">
 		<button class="basicButton" id="startButton" onclick="start()">Spiel starten</button>
 	</div>
-		
+	<footer>
+	<span class="basicFooter"> <a
+		href="${pageContext.request.contextPath}/Mainmenu/mainmenu.jsp">Zurück</a>
+	</span>
+	</footer>
 		
 	</body>
 </html>
