@@ -86,6 +86,7 @@ public class BlackJackServlet extends HttpServlet {
 	
 	private void goDouble(BlackJackBean blackJackBean) {
 		hit(blackJackBean);
+		stay(blackJackBean);
 		endGame(blackJackBean);
 	}
 
