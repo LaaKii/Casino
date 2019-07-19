@@ -45,7 +45,7 @@
 				data.addEventListener("click", clickEvent);
 			}
 			var data = document.createElement("td");
-			data.innerHTML = "2to1"
+			data.innerHTML = "2to1";
 			data.style.width = "80px";
 			data.id = "2to1row" + i;
 			data.setAttribute("class", "click");
@@ -57,15 +57,25 @@
 			elem[i].addEventListener("click", clickEvent);
 			
 		}
-		//document.getElementById("startButton").disabled = "true";
-		//document.getElementById("betInput").addEventListener("onkeyup", refreshProfit);
+		var startButton = document.getElementById("startButton");
+		startButton.classList.add("disabledButton");
+		startButton.disabled = true;
 		}
+		
+		
+		$(document).ready(function() {
+			$.get("/Casino/KontoServlet", function(responseText) { 
+				$("#balance").text(responseText + "$"); 
+			});
+		});
 		
 		var chosenNums = [];
 		var check = false;
 		var bet = 100;
 		var profit = document.getElementById("profitValue");
 		var winFactor = 0;
+		
+		
 		function clickEvent(){
 			
 			
@@ -182,7 +192,16 @@
 			this.style.fontWeight = "bold";
 			
 			}
-			
+			var startButton = document.getElementById("startButton");
+			if(chosenNums.length > 0){
+				
+				startButton.classList.remove("disabledButton");
+				startButton.disabled = false;
+			}
+			else{
+				startButton.classList.add("disabledButton");
+				startButton.disabled = true;
+			}
 			
 			profitValue.innerHTML = "Gewinn: " + Math.round(bet * winFactor) + "$";
 			//document.getElementById("startButton").disabled = "false";
@@ -191,6 +210,9 @@
 		}
 
 		function start(){
+			var result = document.getElementById("result");
+			result.style.backgroundColor = "transparent";
+			result.innerHTML = "";
 			var wheel = document.getElementById("wheel");
 			var angle = Math.floor(Math.random() * 360);
 			var style =  document.createElement("style");
@@ -212,6 +234,17 @@
 			
 			var temp = 360/37.0;
 			var num = wheelNums[Math.round((lastAngle - 323) / temp)];
+			var result = document.getElementById("result");
+			result.innerHTML = num;
+			if(black.indexOf(num) != -1){
+				result.style.backgroundColor = "black";
+			}
+			else if(red.indexOf(num != -1)){
+				result.style.backgroundColor = "red";
+			}
+			else{
+				result.style.backgroundColor = "green";
+			}
 			if(chosenNums.indexOf(num) != -1){
 				alert("win" + num);
 			}
@@ -347,6 +380,28 @@
 				font-size: 40px;
 			}
 			
+			.disabledButton{
+				 opacity: 0.6;
+ 				 cursor: not-allowed;
+			}
+			
+			.disabledButton:hover {
+				background-color:white;
+				color:black;
+			}
+			
+			#result{
+				width:40px;
+				position: absolute;
+				top: 13px;
+				left: 222px;
+				font-size:28px;
+				padding: 8px;
+				border-radius: 20px;
+				color:white;
+				text-align:center;
+			}
+			
 			
 			
 		</style>
@@ -355,13 +410,13 @@
 	<body class="basicBody">
 	<div id="table">
 	<div id="balance">5000$</div>
+	<div id="result"></div>
 	<div id="bet">
 	Einsatz: 
 	<input id="betInput" value="100" onkeyup="refreshProfit()">$
 	</div>
 	<img height="50" width="50" src="${pageContext.request.contextPath}/Ressources/arrow.png" id="arrow">
-	<div id="profit">
-	 
+	<div id="profit"> 
 	<span id="profitValue">Gewinn: -</span>
 	</div>
 	<table id="numTable">
