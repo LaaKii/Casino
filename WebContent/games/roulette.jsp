@@ -69,6 +69,13 @@
 			});
 		});
 		
+	//	$(document).ready(function() {
+		//	var amount=123;
+			//$.get("/Casino/TransactionServlet?amount="+amount, function(responseText) { 
+				//$("#balance").text(responseText + "$"); 
+			//});
+		//});
+		
 		var chosenNums = [];
 		var check = false;
 		var bet = 100;
@@ -409,7 +416,7 @@
 	
 	<body class="basicBody">
 	<div id="table">
-	<div id="balance">5000$</div>
+	<div id="balance"></div>
 	<div id="result"></div>
 	<div id="bet">
 	Einsatz: 

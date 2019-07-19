@@ -9,18 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import de.casino.com.games.blackjack.BlackJackUtility.Winner;
-
 @WebServlet("/BlackJackServlet")
 public class BlackJackServlet extends HttpServlet {
 
 	private String response = "";
 	private HttpServletResponse resp;
 	private HttpServletRequest req;
-	private boolean endGameCalled = false;
-
+	private boolean endGameCalled=false;
+	
 	private void setupNewGame(BlackJackBean blackJackBean) {
-		endGameCalled = false;
 		response = "";
 		BlackJackDeck deck = blackJackBean.getDeck();
 		BlackJackPlayer player = blackJackBean.getPlayer();
@@ -103,11 +100,9 @@ public class BlackJackServlet extends HttpServlet {
 	}
 
 	private void goDouble(BlackJackBean blackJackBean) {
-<<<<<<< HEAD
 		hit(blackJackBean);
 		stay(blackJackBean);
 		endGame(blackJackBean);
-=======
 		BlackJackPlayer player = blackJackBean.getPlayer();
 		if (player.getHand().size() == 2 && player.getValueOfHand() <= 17) {
 			hit(blackJackBean);
@@ -115,7 +110,6 @@ public class BlackJackServlet extends HttpServlet {
 		} else {
 			System.out.println("Nope");
 		}
->>>>>>> 5ca511cc62332f913dc6d794ef7d4cb3ef6c53f9
 	}
 
 	@Override
@@ -157,35 +151,33 @@ public class BlackJackServlet extends HttpServlet {
 			System.out.println("double clicked");
 			goDouble(blackJackBean);
 		}
-
-		if (drawTooMuch(blackJackBean)) {
+		
+		if (drawToMuch(blackJackBean)) {
 			endGame(blackJackBean);
 		}
-
-		// TODO GANZ DICKES TODO, IRGENDWIE MUSS DAS MIT DEM SESSION SCOPE GEREGELT
-		// WERDEN. SEITE NEU LADEN UND MAN HAT IMMERNOCH GLEICHE KARTEN
+			
+		//TODO GANZ DICKES TODO, IRGENDWIE MUSS DAS MIT DEM SESSION SCOPE GEREGELT WERDEN. SEITE NEU LADEN UND MAN HAT IMMERNOCH GLEICHE KARTEN
 //		if (!endGameCalled) {
-		req.getSession().setAttribute("blackJackBean", blackJackBean);
+			req.getSession().setAttribute("blackJackBean", blackJackBean);	
 //		}else {
 //			req.getSession().setAttribute("blackJackBean", null);
 //		}
 	}
-
-	private boolean drawTooMuch(BlackJackBean blackJackBean) {
-		if (blackJackBean.getPlayer().getValueOfHand() > 21) {
+	
+	private boolean drawToMuch(BlackJackBean blackJackBean) {
+		if (blackJackBean.getPlayer().getValueOfHand()>21) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
-
+	
 	private void endGame(BlackJackBean blackJackBean) {
-		response = "gameWinner=";
-
+		response="gameWinner=";
+		
 		BlackJackUtility utility = new BlackJackUtility();
 		System.out.println("final dealer hand: " + blackJackBean.getDealer().getValueOfHand());
 		System.out.println("final player hand: " + blackJackBean.getPlayer().getValueOfHand());
-		response += utility.determineWinner(blackJackBean.getPlayer(), blackJackBean.getDealer()).name();
+		response+=utility.determineWinner(blackJackBean.getPlayer(), blackJackBean.getDealer()).name();
 		this.resp.setContentType("text/plain");
 		this.resp.setCharacterEncoding("UTF-8");
 		try {
@@ -194,7 +186,7 @@ public class BlackJackServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		endGameCalled = true;
+		endGameCalled=true;
 	}
-
+	
 }

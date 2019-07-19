@@ -40,7 +40,6 @@ public class TransactionServlet extends HttpServlet{
 		
 		transactionBean.setTransactionAmount(Integer.parseInt(req.getParameter("amount")));
 		
-		
 		UserBean userBean = (UserBean) req.getSession().getAttribute("userBean");
 		userBean = userService.getUserByUsername(userBean.getUsername());
 		
