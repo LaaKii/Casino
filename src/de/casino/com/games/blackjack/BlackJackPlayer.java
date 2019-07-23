@@ -41,12 +41,17 @@ public class BlackJackPlayer extends BlackJackGui{
 	public ArrayList<BlackJackCards> getHand() {
 		return hand;
 	}
-	
+
 
 	public int getValueOfHand () {
 		return valueOfHand;
 	}
 	
+
+	public void setHand(ArrayList<BlackJackCards> hand) {
+		this.hand = hand;
+	}
+
 
 	public void setValueOfHand (int valueOfHand) {
 		this.valueOfHand = valueOfHand;

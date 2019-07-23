@@ -44,7 +44,6 @@
 
 	$(document).ready(function() {
 		$("#hitButton").click(function(){
-			alert("click");
 			$.get("/Casino/BlackJackServlet?game=hit", function(responseText) { 
 				var arrayOfStrings = responseText.split(";");
 				alert(responseText);
@@ -60,7 +59,6 @@
 	
 	$(document).ready(function(){
 		$("#stayButton").click(function(){
-			alert("stay");
 			turnDealerCard();
 			$.get("/Casino/BlackJackServlet?game=stay", function(responseText) { 
 				var arrayOfStrings = responseText.split(";");
@@ -77,7 +75,6 @@
 	
 	$(document).ready(function() {
 		$("#doubleButton").click(function(){
-			alert("double");
 			$.get("/Casino/BlackJackServlet?game=double", function(responseText) { 
 				var arrayOfStrings = responseText.split(";");
 				alert(responseText);
