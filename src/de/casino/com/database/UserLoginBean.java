@@ -1,5 +1,6 @@
 package de.casino.com.database;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class UserLoginBean {
@@ -8,6 +9,18 @@ public class UserLoginBean {
 	private int idUser;
 	private LocalDate loginDate;
 	
+	public UserLoginBean(int idUser) {
+		this.idUser = idUser;
+	}
+	
+	public UserLoginBean() {
+	}
+	
+	public UserLoginBean(int idLoginBean, int idUser, Date loginDate) {
+		this.idLoginBean = idLoginBean;
+		this.idUser = idUser;
+		this.loginDate = loginDate.toLocalDate();
+	}
 	
 	public int getIdLoginBean() {
 		return idLoginBean;
@@ -27,6 +40,12 @@ public class UserLoginBean {
 	public void setLoginDate(LocalDate loginDate) {
 		this.loginDate = loginDate;
 	}
+
+	@Override
+	public String toString() {
+		return "UserLoginBean [idLoginBean=" + idLoginBean + ", idUser=" + idUser + ", loginDate=" + loginDate + "]";
+	}
+	
 	
 	
 

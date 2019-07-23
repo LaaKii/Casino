@@ -1,5 +1,6 @@
 package de.casino.com.services;
 
+import java.sql.Date;
 import java.util.List;
 
 import de.casino.com.dao.DatabaseDao;
@@ -51,5 +52,11 @@ public class LoginService {
 		}
 			System.out.println("Username: " + userbean.getUsername() + " is already used");
 		return false;
+	}
+	
+	//Actually second last, due to login gets registered before this check
+	public Date getLastLoginDateForUser(UserBean userBean) {
+		return Date.valueOf(loginDao.getSingleItemByValue("idUser", new UserLoginBean(userBean.getIdUser())).getLoginDate());
+		
 	}
 }

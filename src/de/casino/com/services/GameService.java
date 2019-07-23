@@ -12,4 +12,9 @@ public class GameService {
 		return gameDao.getSingleItemByValue("gameName", game);
 	}
 	
+	public GameBean getGameByName(String game) {
+		GameBean gameBean = new GameBean(game);
+		return getGameByName(gameBean);
+	}
+	
 }
