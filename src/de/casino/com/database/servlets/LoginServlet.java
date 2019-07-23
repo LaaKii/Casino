@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.casino.com.database.GameBean;
+import de.casino.com.database.TransactionBean;
 import de.casino.com.database.UserBean;
 import de.casino.com.database.UserLoginBean;
 import de.casino.com.services.GameService;
@@ -49,7 +50,7 @@ public class LoginServlet extends HttpServlet{
 			loginService.updateUserLogin(userLoginBean);
 			userBean.setIdUser(userLoginBean.getIdUser());
 			if(transactionService.checkFirstLoginOnThatDay(userBean)) {
-				transactionService.createTransaction(gameService.getGameByName("DAILY LOGIN"), kontoService.getKontoByUser(userBean), 1000);
+				transactionService.createTransaction(userBean, 1000, "DAILY LOGIN");
 				System.out.println("Daily Login Bonus granted");
 			}else {
 				System.out.println("Already received daily login bonus");

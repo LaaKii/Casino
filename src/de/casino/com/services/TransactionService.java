@@ -29,5 +29,19 @@ public class TransactionService {
 	public boolean checkFirstLoginOnThatDay(UserBean user) {
 		return loginService.getLastLoginDateForUser(user).before(java.sql.Date.valueOf(LocalDate.now()));
 	}
+	
+	public void createTransaction(UserBean userBean, int amount, String gameName ) {
+		
+		KontoService kontoService = new KontoService();
+		GameService gameService = new GameService();
+		TransactionService transactionService = new TransactionService();
+		System.out.println("Current UserBean: " + userBean); 
+		System.out.println("Transactionamount: " + amount);
+		KontoBean kontoBean = kontoService.getKontoByUser(userBean);
+		GameBean gameBean = gameService.getGameByName(gameName);
+		
+		transactionService.createTransaction(gameBean, kontoBean, amount);
+		kontoService.updateKontoMoney(kontoBean);
+	}
 
 }
