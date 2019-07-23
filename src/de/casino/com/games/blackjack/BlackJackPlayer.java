@@ -22,10 +22,9 @@ public class BlackJackPlayer extends BlackJackGui{
 				}
 			}
 		}
-
 		getHand().add(card);
 		if (card.getFaceValue() == BlackJackCards.FaceValue.ace) {
-			valueOfHand += card.getFaceValue().getIntValue();
+			valueOfHand += 11;
 
 			while (aceFound > 0 && valueOfHand > 21) {
 				valueOfHand -= 10;
