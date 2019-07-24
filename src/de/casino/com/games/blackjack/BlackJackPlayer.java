@@ -6,7 +6,7 @@ public class BlackJackPlayer extends BlackJackGui{
 	
 	private ArrayList<BlackJackCards> hand = new ArrayList<BlackJackCards>();
 	public int valueOfHand;
-	public int aceFound;
+	public int aceFound = 0;
 	
 	public BlackJackPlayer() {
 		 valueOfHand = 0;
@@ -14,7 +14,6 @@ public class BlackJackPlayer extends BlackJackGui{
 	
 	
 	public void addCard(BlackJackCards card) {
-		aceFound = 0;
 		if (getHand().size() > 0) {
 			for (BlackJackCards index : getHand()) {
 				if (index.getFaceValue() == BlackJackCards.FaceValue.ace) {

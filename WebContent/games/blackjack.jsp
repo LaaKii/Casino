@@ -19,6 +19,7 @@
 	
 	$(document).ready(function() {
 		$("#startButton").click(function(){
+			
 			var bet = document.getElementById("betInput").value;
 			document.getElementById("startGameBox").style.visibility = "hidden";
 			document.getElementById("userInput").style.visibility = "visible";
@@ -46,7 +47,6 @@
 		$("#hitButton").click(function(){
 			$.get("/Casino/BlackJackServlet?game=hit", function(responseText) { 
 				var arrayOfStrings = responseText.split(";");
-				alert(responseText);
 				for(i in arrayOfStrings){
 					var temp = arrayOfStrings[i].split("=");
 					if(temp[0].indexOf("playercard") != -1){
@@ -62,13 +62,14 @@
 			turnDealerCard();
 			$.get("/Casino/BlackJackServlet?game=stay", function(responseText) { 
 				var arrayOfStrings = responseText.split(";");
-				alert(responseText);
 				for(i in arrayOfStrings){
 					var temp = arrayOfStrings[i].split("=");
 					if(temp[0].indexOf("dealercard") != -1){
 						getDealerCard(temp[1]);
 					}
 				}
+				document.getElementById("startGameBox").style.visibility = "visible";
+				document.getElementById("placedBet").style.visibility = "hidden";
 			});
 		});	
 	})
@@ -77,15 +78,20 @@
 		$("#doubleButton").click(function(){
 			$.get("/Casino/BlackJackServlet?game=double", function(responseText) { 
 				var arrayOfStrings = responseText.split(";");
-				alert(responseText);
 				for(i in arrayOfStrings){
 					var temp = arrayOfStrings[i].split("=");
-					if(temp[0].indexOf("playercard") != -1){
+					
+					if(temp[0].indexOf("dealercard") != -1){
+						getDealerCard(temp[1]);
+					}
+					
+					else if(temp[0].indexOf("playercard") != -1){
 						getPlayerCard(temp[1]);
 					}
 				}
 			});
 			turnDealerCard();
+			document.getElementById("startGameBox").style.visibility = "visible";
 		});
 	});
 	
@@ -187,6 +193,13 @@
 		    elem.style.top = posY + 'px';
 		    elem.style.right = posX + 'px';
 		  }
+		
+		function removeCards(){
+			var images = document.getElementById("table").getElementsByTagName("img");
+			for(var i = 0; i < images.length; i++){
+				images[i].remove();
+			}
+		}
 	}
 </script>
 <style>
@@ -292,6 +305,26 @@ to {
 	font-size: 40px;
 }
 
+#playerHandValue {
+	position: absolute;
+	top: 480px;
+	left: 275px;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 30px;
+	font-size: 40px;
+}
+
+#dealerHandValue {
+	position: absolute;
+	top: 150px;
+	left: 275px;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 30px;
+	font-size: 40px;
+}
+
 #placedBet {
 	position: absolute;
 	bottom: 30px;
@@ -313,6 +346,8 @@ to {
 			src="../Ressources/cardImages/KartenDeckImages/card.png"
 			height="150px" width="100px">
 		<div id="playerCards"></div>
+		<div id="playerHandValue">21</div>
+		<div id="dealerHandValue">21</div>
 		<div id="dealerCards"></div>
 		<div id="balance">5000$</div>
 		<div id="placedBet">

@@ -15,7 +15,7 @@ public class BlackJackUtility {
 		if(DealerHand <= 21) {
 		if (PlayerHand == DealerHand) {
 			return Winner.TIE;
-		} else if (PlayerHand > DealerHand) {
+		} else if (PlayerHand > DealerHand && PlayerHand <= 21) {
 			return Winner.PLAYER;
 		} else {
 			return Winner.DEALER;
