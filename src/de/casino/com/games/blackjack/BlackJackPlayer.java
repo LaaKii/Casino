@@ -14,26 +14,24 @@ public class BlackJackPlayer extends BlackJackGui{
 	
 	
 	public void addCard(BlackJackCards card) {
-		if (getHand().size() > 0) {
-			for (BlackJackCards index : getHand()) {
-				if (index.getFaceValue() == BlackJackCards.FaceValue.ace) {
-					aceFound++;
-				}
-			}
-		}
 		getHand().add(card);
 		if (card.getFaceValue() == BlackJackCards.FaceValue.ace) {
 			valueOfHand += 11;
+			aceFound++;
 
-			while (aceFound > 0 && valueOfHand > 21) {
+			if (aceFound > 0 && valueOfHand > 21) {
 				valueOfHand -= 10;
 				aceFound--;
 			}
 
 		} else {
 			valueOfHand += card.getFaceValue().getIntValue();
+			if (aceFound > 0 && valueOfHand > 21) {
+				valueOfHand -= 10;
+				aceFound--;
+			}
 		}
-
+System.out.println(aceFound);
 	}
 
 	public ArrayList<BlackJackCards> getHand() {
@@ -63,6 +61,18 @@ public class BlackJackPlayer extends BlackJackGui{
 		}
 		return sb.toString();
 	}
+
+
+	public int getAceFound() {
+		return aceFound;
+	}
+
+
+	public void setAceFound(int aceFound) {
+		this.aceFound = aceFound;
+	}
+	
+	
 	
 	
 }

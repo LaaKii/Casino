@@ -18,8 +18,13 @@ public class BlackJackServlet extends HttpServlet {
 	private HttpServletRequest req;
 	private boolean gameOver = false;
 	String winner;
+	public int playerCardValue = 0;
+	public int dealerCardValue = 0;
+	public String handValueString;
 
 	private void setupNewGame(BlackJackBean blackJackBean) {
+		playerCardValue = 0;
+		dealerCardValue = 0;
 		gameOver = false;
 		response = "";
 		BlackJackDeck deck = blackJackBean.getDeck();
@@ -31,6 +36,8 @@ public class BlackJackServlet extends HttpServlet {
 		blackJackBean.setPlayer(player);
 		blackJackBean.setDeck(deck);
 		blackJackBean.setCards(card);
+		player.setAceFound(0);
+		dealer.setAceFound(0);
 		player.setHand(new ArrayList<BlackJackCards>());
 		dealer.setHand(new ArrayList<BlackJackCards>());
 		player.setValueOfHand(0);
@@ -38,9 +45,13 @@ public class BlackJackServlet extends HttpServlet {
 		for (int i = 0; i < 2; i++) {
 			card = deck.dealCard();
 			player.addCard(card);
+			playerCardValue += card.getFaceValue().getIntValue();
+			response += "playerCardValue=" + playerCardValue + ";";
 			response += "playercard=" + card.getFaceValue() + "_of_" + card.getSuit() + ";";
 			card = deck.dealCard();
 			dealer.addCard(card);
+			dealerCardValue += card.getFaceValue().getIntValue();
+			response += "dealerCardValue=" + dealerCardValue + ";";
 			response += "dealercard=" + card.getFaceValue() + "_of_" + card.getSuit() + ";";
 			System.out.println("Player: " + player.getValueOfHand());
 			System.out.println("Dealer: " + dealer.getValueOfHand());
@@ -66,6 +77,9 @@ public class BlackJackServlet extends HttpServlet {
 		BlackJackCards card = deck.dealCard();
 		if (player.getValueOfHand() < 21 && !gameOver) {
 			player.addCard(card);
+			System.out.println("Player: " + player.getValueOfHand());
+			playerCardValue += card.getFaceValue().getIntValue();
+			response += "playerCardValue=" + playerCardValue + ";";
 			response += "playercard=" + card.getFaceValue() + "_of_" + card.getSuit() + ";";
 			this.resp.setContentType("text/plain");
 			this.resp.setCharacterEncoding("UTF-8");
@@ -85,12 +99,13 @@ public class BlackJackServlet extends HttpServlet {
 		BlackJackPlayer dealer = blackJackBean.getDealer();
 		BlackJackPlayer player = blackJackBean.getPlayer();
 		BlackJackCards card = deck.dealCard();
-		BlackJackUtility utility = new BlackJackUtility();
 		if (player.getValueOfHand() <= 21) {
 			while (dealer.getValueOfHand() < player.getValueOfHand() && dealer.getValueOfHand() < 17) {
 				card = deck.dealCard();
 				dealer.addCard(card);
-				System.out.println(dealer.getHand());
+				System.out.println("Dealer: " + dealer.getValueOfHand());
+				dealerCardValue += card.getFaceValue().getIntValue();
+				response += "dealerCardValue=" + dealerCardValue + ";";
 				response += "dealercard=" + card.getFaceValue() + "_of_" + card.getSuit() + ";";
 				this.resp.setContentType("text/plain");
 				this.resp.setCharacterEncoding("UTF-8");
@@ -112,8 +127,6 @@ public class BlackJackServlet extends HttpServlet {
 		if (player.getHand().size() == 2 && player.getValueOfHand() <= 17) {
 			hit(blackJackBean);
 			stay(blackJackBean);
-		} else {
-			System.out.println("Nope");
 		}
 	}
 
@@ -132,27 +145,21 @@ public class BlackJackServlet extends HttpServlet {
 		request = req.getParameter("game");
 		switch (request) {
 		case "go":
-			System.out.println("Go clicked");
 			setupNewGame(blackJackBean);
 			break;
 
 		case "hit":
-			System.out.println("Hit clicked");
 			hit(blackJackBean);
-			System.out.println("Player hand: " + blackJackBean.getPlayer().getValueOfHand());
 			break;
 
 		case "stay":
-			System.out.println("Dealer hand: " + blackJackBean.getDealer().getValueOfHand());
 			stay(blackJackBean);
-			System.out.println("Dealer hand after draw: " + blackJackBean.getDealer().getValueOfHand());
 			endGame(blackJackBean);
 
 			req.getSession().setAttribute("BlackJackBean", null);
 			break;
 
 		case "double":
-			System.out.println("double clicked");
 			goDouble(blackJackBean);
 			break;
 		}
@@ -173,8 +180,11 @@ public class BlackJackServlet extends HttpServlet {
 	}
 
 	private void endGame(BlackJackBean blackJackBean) {
+		playerCardValue = 0;
+		dealerCardValue = 0;
 		response = "gameWinner=";
-
+		BlackJackPlayer player = blackJackBean.getPlayer();
+		BlackJackPlayer dealer = blackJackBean.getDealer();
 		BlackJackUtility utility = new BlackJackUtility();
 		System.out.println("final dealer hand: " + blackJackBean.getDealer().getValueOfHand());
 		System.out.println("final player hand: " + blackJackBean.getPlayer().getValueOfHand());
@@ -195,6 +205,8 @@ public class BlackJackServlet extends HttpServlet {
 		}else {
 			
 		}
+		player.setAceFound(0);
+		dealer.setAceFound(0);
 		gameOver = true;
 	}
 

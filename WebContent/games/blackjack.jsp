@@ -37,6 +37,11 @@
 					else if(temp[0].indexOf("playercard") != -1){
 						getPlayerCard(temp[1]);
 					}
+					
+					else if(temp[0].indexOf("playerCardValue") != -1){
+						document.getElementById("playerHandValue").innerHTML = temp[1];
+					}
+					
 				}
 			});
 		});
@@ -52,6 +57,9 @@
 					if(temp[0].indexOf("playercard") != -1){
 						getPlayerCard(temp[1]);
 					}
+					else if(temp[0].indexOf("playerCardValue") != -1){
+						document.getElementById("playerHandValue").innerHTML = temp[1];
+					}
 				}
 			});
 		});
@@ -66,6 +74,10 @@
 					var temp = arrayOfStrings[i].split("=");
 					if(temp[0].indexOf("dealercard") != -1){
 						getDealerCard(temp[1]);
+					}
+
+					else if(temp[0].indexOf("dealerCardValue") != -1){
+						document.getElementById("dealerHandValue").innerHTML = temp[1];
 					}
 				}
 				document.getElementById("startGameBox").style.visibility = "visible";
@@ -88,10 +100,14 @@
 					else if(temp[0].indexOf("playercard") != -1){
 						getPlayerCard(temp[1]);
 					}
+					else if(temp[0].indexOf("playerCardValue") != -1){
+						document.getElementById("playerHandValue").innerHTML = temp[1];
+					}
 				}
 			});
 			turnDealerCard();
 			document.getElementById("startGameBox").style.visibility = "visible";
+			document.getElementById("placedBet").style.visibility = "hidden";
 		});
 	});
 	
@@ -308,7 +324,7 @@ to {
 #playerHandValue {
 	position: absolute;
 	top: 480px;
-	left: 275px;
+	left: 300px;
 	padding: 20px;
 	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 30px;
@@ -323,6 +339,7 @@ to {
 	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 30px;
 	font-size: 40px;
+	visibility: hidden;
 }
 
 #placedBet {
@@ -346,8 +363,8 @@ to {
 			src="../Ressources/cardImages/KartenDeckImages/card.png"
 			height="150px" width="100px">
 		<div id="playerCards"></div>
-		<div id="playerHandValue">21</div>
-		<div id="dealerHandValue">21</div>
+		<div id="playerHandValue">0</div>
+		<div id="dealerHandValue">0</div>
 		<div id="dealerCards"></div>
 		<div id="balance">5000$</div>
 		<div id="placedBet">
