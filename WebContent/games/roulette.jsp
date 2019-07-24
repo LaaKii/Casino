@@ -64,28 +64,34 @@
 		
 		
 		$(document).ready(function() {
+			loadKontostand();
+		});
+		
+		function loadKontostand(){
+			alert("in update konto");
 			$.get("/Casino/KontoServlet", function(responseText) { 
 				$("#balance").text(responseText + "$"); 
 			});
-		});
-		
-	//	$(document).ready(function() {
-		//	var amount=123;
-			//$.get("/Casino/TransactionServlet?amount="+amount, function(responseText) { 
-				//$("#balance").text(responseText + "$"); 
-			//});
-		//});
+		}
 		
 		var chosenNums = [];
 		var check = false;
 		var bet = 100;
 		var profit = document.getElementById("profitValue");
 		var winFactor = 0;
+		var amount = 0;
+		
+		function updateKonto(){
+			// var amount = Math.round(bet * winFactor);
+			alert("in update konto");
+			$.get("/Casino/TransactionServlet?amount="+amount, function(responseText) { 
+				$("#balance").text(responseText + "$"); 
+			});
+			loadKontostand();
+		}
 		
 		
 		function clickEvent(){
-			
-			
 			
 			bet = document.getElementById("betInput").value;
 			var id = this.id;
@@ -253,10 +259,14 @@
 				result.style.backgroundColor = "green";
 			}
 			if(chosenNums.indexOf(num) != -1){
-				alert("win" + num);
+				//this
+				amount = Math.round(bet * winFactor) - bet;
+				updateKonto();
 			}
 			else{
-				alert("lose" + num);
+				//this
+				amount = 0-bet;
+				updateKonto();
 			}
 		}
 		
