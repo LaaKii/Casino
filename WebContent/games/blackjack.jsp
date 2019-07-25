@@ -41,6 +41,9 @@
 					else if(temp[0].indexOf("playerCardValue") != -1){
 						document.getElementById("playerHandValue").innerHTML = temp[1];
 					}
+					else if(temp[0].indexOf("dealerCardValueHidden") != -1){
+						document.getElementById("dealerHandValue").innerHTML = temp[1];
+					}
 					
 				}
 			});
@@ -102,6 +105,9 @@
 					}
 					else if(temp[0].indexOf("playerCardValue") != -1){
 						document.getElementById("playerHandValue").innerHTML = temp[1];
+					}
+					else if(temp[0].indexOf("dealerCardValue") != -1){
+						document.getElementById("dealerHandValue").innerHTML = temp[1];
 					}
 				}
 			});
@@ -277,7 +283,7 @@ to {
 	width: 130px;
 	border: 4px solid grey;
 	position: absolute;
-	top: 32px;
+	top: 30px;
 	right: 432px;
 	border-radius: 30px;
 }
@@ -313,7 +319,7 @@ to {
 
 #balance {
 	position: absolute;
-	top: 20px;
+	top: 30px;
 	left: 20px;
 	padding: 20px;
 	background-color: rgba(255, 255, 255, 0.9);
@@ -323,7 +329,7 @@ to {
 
 #playerHandValue {
 	position: absolute;
-	top: 480px;
+	top: 482px;
 	left: 300px;
 	padding: 20px;
 	background-color: rgba(255, 255, 255, 0.9);
@@ -333,13 +339,12 @@ to {
 
 #dealerHandValue {
 	position: absolute;
-	top: 150px;
-	left: 275px;
+	top: 30px;
+	left: 300px;
 	padding: 20px;
 	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 30px;
 	font-size: 40px;
-	visibility: hidden;
 }
 
 #placedBet {
