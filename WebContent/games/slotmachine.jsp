@@ -6,6 +6,8 @@
 <meta charset="ISO-8859-1">
 <title>Slotmachine</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
+<script src="https://code.jquery.com/jquery-1.10.2.js"
+		type="text/javascript"></script>
 </head>
 <script>
 
@@ -33,22 +35,21 @@
 		default:break;
 	}
 	}
+		function loadKontostand(){
+			$.get("/Casino/KontoServlet", function(responseText) { 
+				$("#balance").text(responseText + "$"); 
+			});
+		}
 		
 		function updateKonto(amount){
-			// var amount = Math.round(bet * winFactor);
-			alert("in update konto");
-			$.get("/Casino/TransactionServlet?amount="+amount, function(responseText) { 
+			$.get("/Casino/TransactionServlet?amount="+ amount, function(responseText) { 
 				$("#balance").text(responseText + "$"); 
 			});
 			loadKontostand();
 		}
 		
 		
-		function loadKontostand(){
-			$.get("/Casino/KontoServlet", function(responseText) { 
-				$("#balance").text(responseText + "$"); 
-			});
-		}
+		
 		var imageNames = ["cherry", "lemon", "grape", "bell", "seven"];
 		var winRates = ["20", "50", "100", "1000", "10000"];
 		for(var i = 0; i < 5; i++){
