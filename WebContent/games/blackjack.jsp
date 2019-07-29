@@ -130,6 +130,11 @@
 	
 	$(document).ready(function() {
 		$("#doubleButton").click(function(){
+			loadKontostand();
+			bet = document.getElementById("betInput").value;
+			amount = -1*bet;
+			updateKonto();
+			loadKontostand();
 			$.get("/Casino/BlackJackServlet?game=double", function(responseText) { 
 				var arrayOfStrings = responseText.split(";");
 				for(i in arrayOfStrings){
@@ -147,6 +152,16 @@
 					}
 					else if(temp[0].indexOf("dealerCardValue") != -1){
 						document.getElementById("dealerHandValue").innerHTML = temp[1];
+					}
+					else if(temp[0].indexOf("PlayerWins") != -1){
+						amount = bet*4;
+						updateKonto();
+						loadKontostand();
+					}
+					else if(temp[0].indexOf("TieGame") != -1){
+						amount = bet;
+						updateKonto();
+						loadKontostand();
 					}
 					
 				}

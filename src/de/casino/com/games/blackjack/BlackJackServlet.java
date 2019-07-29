@@ -108,7 +108,7 @@ public class BlackJackServlet extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		endGame(blackJackBean);
+		endGame(blackJackBean);
 //		req.getSession().setAttribute("BlackJackBean", null);
 
 	}
@@ -147,7 +147,7 @@ public class BlackJackServlet extends HttpServlet {
 
 		case "stay":
 			stay(blackJackBean);
-			endGame(blackJackBean);
+//			endGame(blackJackBean);
 
 			req.getSession().setAttribute("BlackJackBean", null);
 			break;
