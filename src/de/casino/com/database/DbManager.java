@@ -29,7 +29,7 @@ public class DbManager {
 			try {
 				//Standard Server
 				//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/casino?serverTimezone=UTC", "root",null);
-				//Excel Servier
+				//Excel Server
 				conn = DriverManager.getConnection("jdbc:mysql://109.193.93.134:3307/casino?serverTimezone=UTC&useSSL=false", "newuser",null);
 			} catch (SQLException e) {
 				e.printStackTrace();

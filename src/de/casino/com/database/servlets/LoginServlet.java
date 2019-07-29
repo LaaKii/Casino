@@ -47,6 +47,7 @@ public class LoginServlet extends HttpServlet{
 			UserLoginBean userLoginBean = new UserLoginBean();
 			userLoginBean.setIdUser(userService.getUserByUsername(userBean.getUsername()).getIdUser());
 			userLoginBean.setLoginDate(LocalDate.now());
+			System.err.println("LOGIN: " + userLoginBean.getLoginDate());
 			loginService.updateUserLogin(userLoginBean);
 			userBean.setIdUser(userLoginBean.getIdUser());
 			if(transactionService.checkFirstLoginOnThatDay(userBean)) {

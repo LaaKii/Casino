@@ -38,9 +38,10 @@ public class UserLoginDao implements DatabaseDao<UserLoginBean>{
 			rs = stmt.executeQuery(sql);
 			if(rs.next()) {
 				res = new UserLoginBean(rs.getInt(1),rs.getInt(2), rs.getDate("loginDate"));
+				System.err.println(res);
 			}else {
 				//Default -1 day if user never logged in
-				System.out.println("Adding default login date: today - 1");
+				System.err.println("Adding default login date: today - 1");
 				res = new UserLoginBean(0,0,Date.valueOf(LocalDate.now().minusDays(1)));
 			}
 		} catch (SQLException e) {
@@ -63,7 +64,6 @@ public class UserLoginDao implements DatabaseDao<UserLoginBean>{
 				e.printStackTrace();
 			}
 		}
-		System.out.println("Last Login: " + res);
 		return res;
 	}
 
@@ -90,7 +90,7 @@ public class UserLoginDao implements DatabaseDao<UserLoginBean>{
 		try {
 			PreparedStatement preparedStatement = DbManager.getConnection().prepareStatement(insertSql);
 			preparedStatement.setInt(1, newItem.getIdUser());
-			preparedStatement.setDate(2, Date.valueOf(newItem.getLoginDate()));
+			preparedStatement.setDate(2, Date.valueOf(newItem.getLoginDate().plusDays(1)));
 			preparedStatement.executeUpdate();
 			preparedStatement.close();
 		} catch (SQLException e) {
