@@ -13,11 +13,11 @@
 	<div class="content">
 	<h2>FAQ</h2>
 		<details>
-			<summary>Warum ist das Pepnis-Casino so ultra geil?</summary>
+			<summary>Warum ist das Rekursino so ultra geil?</summary>
 			<p>Da es wie ein echtes Casino ist, aber kostenlos!</p><br>
 		</details><br>
 		<details>
-		  <summary>Kann ich mit dem Pepnis-Casino reich werden?</summary>
+		  <summary>Kann ich mit dem Rekursino reich werden?</summary>
 		  <p>Nein</p>
 		</details>
 	</div>
