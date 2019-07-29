@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
 <title>Profil</title>
 </head>
-<body>
+<body class="basicBody">
 <h1 class="basicHeader">Rekursino</h1>
 <footer>
 		<span class="basicFooter"> <a
