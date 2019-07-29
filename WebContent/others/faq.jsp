@@ -13,12 +13,20 @@
 	<div class="content">
 	<h2>FAQ</h2>
 		<details>
-			<summary>Warum ist das Rekursino so ultra geil?</summary>
-			<p>Da es wie ein echtes Casino ist, aber kostenlos!</p><br>
-		</details><br>
+			<summary>Was kann ich im Rekursino machen??</summary>
+			<p>Es ist wie ein echtes Casino, jedoch nur mit Spielgeld</p><br>
+		</details>
 		<details>
-		  <summary>Kann ich mit dem Rekursino reich werden?</summary>
-		  <p>Nein</p>
+		  <summary>Kann ich auch mit echtem Geld spielen?</summary>
+		  <p>Nein, hier wird nur mit Spielgeld gespielt</p>
+		</details>
+		<details>
+		  <summary>Wie bekomme ich Geld?</summary>
+		  <p>Man bekommt einmal pro Tag 1000$ wenn man sich anmeldet</p>
+		</details>
+		<details>
+		  <summary>Wie kann ich meinen User bearbeiten?</summary>
+		  <p>E-Mail an Kontakt (Steht im Impressum)</p>
 		</details>
 	</div>
 	<footer>
