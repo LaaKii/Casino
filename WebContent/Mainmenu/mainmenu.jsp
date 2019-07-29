@@ -21,7 +21,7 @@
 		<a onmouseover="showTitle('Blackjack')" onmouseout="hideTitle()" href="${pageContext.request.contextPath}/games/blackjack.jsp"><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/blackjack.png"></a>
 		<a onmouseover="showTitle('Roulette')" onmouseout="hideTitle()" href="${pageContext.request.contextPath}/games/roulette.jsp"><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/roulette2.png"></a>
 		<a onmouseover="showTitle('Slotmachine')" onmouseout="hideTitle()" href="${pageContext.request.contextPath}/games/slotmachine.jsp"><img height="150" width="250" style="padding:50px 0px" src="${pageContext.request.contextPath}/Ressources/slotmachine.jpg"></a>
-		<a onmouseover="showTitle('Profil')" onmouseout="hideTitle()" href=#><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/profile.png"></a>
+		<a onmouseover="showTitle('Profil')" onmouseout="hideTitle()" href="${pageContext.request.contextPath}/games/profile.jsp"><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/profile.png"></a>
 	</div>
 <footer>
 		<span class="basicFooter">

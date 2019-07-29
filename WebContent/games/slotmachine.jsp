@@ -35,4 +35,10 @@
 		</table>
 	</div>
 	</div>
+	<footer>
+	<span class="basicFooter"> <a
+		href="${pageContext.request.contextPath}/Mainmenu/mainmenu.jsp">Zurück</a>
+	</span>
+	</footer>
+	</body>
 </html>

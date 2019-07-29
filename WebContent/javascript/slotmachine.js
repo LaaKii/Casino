@@ -202,7 +202,7 @@ var slot;
 		}
 		else{
 			var bet = document.getElementById("betInput").value;
-			updateKonto("-" + profit);
+			updateKonto("-" + bet);
 			document.getElementById("result").innerHTML = "verloren" ;
 		}
 		
