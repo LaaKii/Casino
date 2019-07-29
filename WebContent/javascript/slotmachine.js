@@ -56,16 +56,13 @@ var slot;
 	
 	function updateKonto(amount){
 		$.get("/Casino/TransactionServlet?amount="+ amount, function(responseText) { 
-			alert("in update konto");
-			$("#balance").text(responseText + "$"); 
+			$("#blablabla").text(responseText + "$");
 		});
-		loadKontostand();
 	}
 	
 	
 	function loadKontostand(){
 		$.get("/Casino/KontoServlet", function(responseText) { 
-			alert("in load konto");
 			$("#balance").text(responseText + "$"); 
 		});
 	}
@@ -211,6 +208,7 @@ var slot;
 			document.getElementById("result").innerHTML = "verloren" ;
 		}
 		
+		loadKontostand();
 		var startButton = document.getElementById("startButton");
 		startButton.classList.remove("disabledButton");
 		startButton.disabled = false;
