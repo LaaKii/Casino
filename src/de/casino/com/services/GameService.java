@@ -9,6 +9,7 @@ public class GameService {
 	DatabaseDao<GameBean> gameDao = new GameDao();
 	
 	public GameBean getGameByName(GameBean game) {
+		System.out.println("game: " + game);
 		return gameDao.getSingleItemByValue("gameName", game);
 	}
 	

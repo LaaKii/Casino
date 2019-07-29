@@ -52,14 +52,14 @@ public class BlackJackServlet extends HttpServlet {
 		req.getSession().setAttribute("blackJackBean", blackJackBean);
 		this.resp.setContentType("text/plain");
 		this.resp.setCharacterEncoding("UTF-8");
+		if(utility.checkBlackJack(player)) {
+			response += "BlackJack=;";
+			stay(blackJackBean);
+		}
 		try {
 			this.resp.getWriter().write(response);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		if(utility.checkBlackJack(player)) {
-//			hier Dealerkarte umdrehen
-			stay(blackJackBean);
 		}
 	}
 
@@ -120,7 +120,7 @@ public class BlackJackServlet extends HttpServlet {
 			hit(blackJackBean);
 			stay(blackJackBean);
 		}else {
-			response += "numberOfPlayerCards=" + player.getHand().size() + ";";	
+			response += "ScoreTooHigh;";	
 		}
 	}
 
@@ -174,28 +174,29 @@ public class BlackJackServlet extends HttpServlet {
 	}
 
 	private void endGame(BlackJackBean blackJackBean) {
-		response = "gameWinner=";
+		response = "";
 		BlackJackPlayer player = blackJackBean.getPlayer();
 		BlackJackPlayer dealer = blackJackBean.getDealer();
 		BlackJackUtility utility = new BlackJackUtility();
 		System.out.println("final dealer hand: " + blackJackBean.getDealer().getValueOfHand());
 		System.out.println("final player hand: " + blackJackBean.getPlayer().getValueOfHand());
 		String winner = utility.determineWinner(blackJackBean.getPlayer(), blackJackBean.getDealer()).name();
-		response += winner;
+//		response += winner+";";
 		System.out.println(winner);
 		this.resp.setContentType("text/plain");
 		this.resp.setCharacterEncoding("UTF-8");
+		if(winner.equals("PLAYER")) {
+			response += "PlayerWins=;";
+			System.out.println(response);
+		}else if (winner == "DEALER") {
+			response += "DealerWins=;";
+		}else {
+			response += "Tiegame=;";
+		}
 		try {
 			this.resp.getWriter().write(response);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		if(winner == "PLAYER") {
-			
-		}else if (winner == "DEALER") {
-			
-		}else {
-			
 		}
 		player.setAceFound(0);
 		dealer.setAceFound(0);
