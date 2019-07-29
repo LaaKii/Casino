@@ -10,20 +10,8 @@
 	class="de.casino.com.database.UserBean"
 	scope="session" />
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath}/javascript/mainmenu.js'></script>
 <title>Hauptmenü</title>
-<script>
-	var name;
-	function showTitle(name) {
-		document.getElementById("choice").style.visibility = "visible";
-		document.getElementById("choice").innerHTML = name;
-	}
-	
-	function hideTitle(){
-		document.getElementById("choice").style.visibility = "hidden";
-	}
-	
-	
-</script>
 </head>
 <body class="basicBody">
 	<!--  <h1 class="basicHeader">Username ${userBean.username}</h1>-->
