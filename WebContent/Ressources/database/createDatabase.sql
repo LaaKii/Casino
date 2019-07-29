@@ -42,4 +42,6 @@ CREATE TABLE casino.userLogin(
 );
 
 ALTER TABLE casino.transactions ADD CONSTRAINT idGameFK FOREIGN KEY (idGame) REFERENCES casino.games(idGame);
-
+use casino;
+insert into games (gameName) values ('roulette');
+insert into games (gameName) values ('DAILY LOGIN');
