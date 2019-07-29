@@ -48,13 +48,13 @@ public class BlackJackServlet extends HttpServlet {
 			System.out.println("Player: " + player.getValueOfHand());
 			System.out.println("Dealer: " + dealer.getValueOfHand());
 		}
-		response += "dealerCardValueHidden="+ dealer.getHand().get(0).getFaceValue().getIntValue() + ";";
+		response += "dealerCardValueHidden=" + dealer.getHand().get(0).getFaceValue().getIntValue() + ";";
 		req.getSession().setAttribute("blackJackBean", blackJackBean);
 		this.resp.setContentType("text/plain");
 		this.resp.setCharacterEncoding("UTF-8");
-		if(utility.checkBlackJack(player)) {
+		if (utility.checkBlackJack(player)) {
 			response += "BlackJack=;";
-			stay(blackJackBean);
+//			stay(blackJackBean);
 		}
 		try {
 			this.resp.getWriter().write(response);
@@ -102,16 +102,15 @@ public class BlackJackServlet extends HttpServlet {
 				this.resp.setContentType("text/plain");
 				this.resp.setCharacterEncoding("UTF-8");
 			}
-			}
-			try {
-				this.resp.getWriter().write(response);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			endGame(blackJackBean);
-			req.getSession().setAttribute("BlackJackBean", null);
+		}
+		try {
+			this.resp.getWriter().write(response);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		endGame(blackJackBean);
+//		req.getSession().setAttribute("BlackJackBean", null);
 
-		
 	}
 
 	private void goDouble(BlackJackBean blackJackBean) {
@@ -119,8 +118,8 @@ public class BlackJackServlet extends HttpServlet {
 		if (player.getHand().size() == 2 && player.getValueOfHand() <= 17) {
 			hit(blackJackBean);
 			stay(blackJackBean);
-		}else {
-			response += "ScoreTooHigh;";	
+		} else {
+			response += "ScoreTooHigh;";
 		}
 	}
 
@@ -158,7 +157,7 @@ public class BlackJackServlet extends HttpServlet {
 			break;
 		}
 
-		if (drawToMuch(blackJackBean)) {
+		if (drawnTooMuch(blackJackBean)) {
 			endGame(blackJackBean);
 		}
 
@@ -166,11 +165,12 @@ public class BlackJackServlet extends HttpServlet {
 
 	}
 
-	private boolean drawToMuch(BlackJackBean blackJackBean) {
+	private boolean drawnTooMuch(BlackJackBean blackJackBean) {
 		if (blackJackBean.getPlayer().getValueOfHand() > 21) {
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 	private void endGame(BlackJackBean blackJackBean) {
@@ -181,17 +181,16 @@ public class BlackJackServlet extends HttpServlet {
 		System.out.println("final dealer hand: " + blackJackBean.getDealer().getValueOfHand());
 		System.out.println("final player hand: " + blackJackBean.getPlayer().getValueOfHand());
 		String winner = utility.determineWinner(blackJackBean.getPlayer(), blackJackBean.getDealer()).name();
-//		response += winner+";";
 		System.out.println(winner);
 		this.resp.setContentType("text/plain");
 		this.resp.setCharacterEncoding("UTF-8");
-		if(winner.equals("PLAYER")) {
+		if (winner.equals("PLAYER")) {
 			response += "PlayerWins=;";
 			System.out.println(response);
-		}else if (winner == "DEALER") {
+		} else if (winner.equals("DEALER")) {
 			response += "DealerWins=;";
-		}else {
-			response += "Tiegame=;";
+		} else {
+			response += "TieGame=;";
 		}
 		try {
 			this.resp.getWriter().write(response);

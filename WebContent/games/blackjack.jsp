@@ -16,15 +16,17 @@
 	var amount = 0;
 	var bet;
 	
-	$(document).ready(function() {
-		loadKontostand();
-	});
+
 	
 	function loadKontostand(){
 		$.get("/Casino/KontoServlet", function(responseText) { 
 			$("#balance").text(responseText + "$"); 
 		});
 	}
+	
+	$(document).ready(function() {
+		loadKontostand();
+	});
 	
 	function updateKonto(){
 		$.get("/Casino/TransactionServlet?amount="+amount, function(responseText) { 
@@ -35,7 +37,11 @@
 	
 	$(document).ready(function() {
 		$("#startButton").click(function(){
+			loadKontostand();
 			bet = document.getElementById("betInput").value;
+			amount = -1*bet;
+			updateKonto();
+			loadKontostand();
 			document.getElementById("startGameBox").style.visibility = "hidden";
 			document.getElementById("userInput").style.visibility = "visible";
 			document.getElementById("placedBet").style.visibility = "visible";
@@ -105,17 +111,16 @@
 						document.getElementById("dealerHandValue").innerHTML = temp[1];
 					}
 					else if(temp[0].indexOf("PlayerWins") != -1){
-						amount = bet/2;
-						alert(amount);
+						amount = bet*2;
 						updateKonto();
+						loadKontostand();
 					}
-					else if(temp[0].indexOf("DealerWins") != -1){
-						amount = -1*(bet/2);
-						alert(amount);
+					else if(temp[0].indexOf("TieGame") != -1){
+						amount = bet;
 						updateKonto();
+						loadKontostand();
 					}
 				}
-				//alert ("Game over");
 				document.getElementById("startGameBox").style.visibility = "visible";
 				document.getElementById("placedBet").style.visibility = "hidden";
 				
@@ -421,7 +426,7 @@ to {
 			<br>
 			<button id="doubleButton" class="basicButton playButton">Double</button>
 			<br>
-			<button id="stayButton" class="basicButton playButton"">Stay</button>
+			<button id="stayButton" class="basicButton playButton">Stay</button>
 			<br>
 		</div>
 	</div>
