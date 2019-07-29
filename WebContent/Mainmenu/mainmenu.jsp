@@ -12,6 +12,7 @@
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
 <script type='text/javascript' src='${pageContext.request.contextPath}/javascript/mainmenu.js'></script>
 <title>Hauptmenü</title>
+<script type='text/javascript' src='${pageContext.request.contextPath}/javascript/logout.js'></script>
 </head>
 <body class="basicBody">
 	<!--  <h1 class="basicHeader">Username ${userBean.username}</h1>-->
@@ -27,6 +28,7 @@
 		<span class="basicFooter">
 			<a href="${pageContext.request.contextPath}/others/impressum.jsp">Impressum</a>
 			<a href="${pageContext.request.contextPath}/others/faq.jsp">FAQ</a>
+			<a href="#logout">Logout</a>
 		</span>
 		</footer>
 </body>

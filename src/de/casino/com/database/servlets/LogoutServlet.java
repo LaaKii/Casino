@@ -20,6 +20,7 @@ public class LogoutServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Logout User
 		req.getSession().setAttribute("userBean", new UserBean());
+		System.out.println("user logged out");
 		
 		RequestDispatcher dispatcher;
 		dispatcher = req.getRequestDispatcher("index.jsp");

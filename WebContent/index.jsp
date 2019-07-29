@@ -17,6 +17,9 @@
 			#loginError{visibility:visible}
 		</style>
 		</c:if>
+		<script src="https://code.jquery.com/jquery-1.10.2.js"
+		type="text/javascript"></script>
+		<script type='text/javascript' src='${pageContext.request.contextPath}/javascript/logout.js'></script>
 	</head>
 	
 	<body class="basicBody">
@@ -47,6 +50,7 @@
 		<span class="basicFooter">
 			<a href="${pageContext.request.contextPath}/others/impressum.jsp">Impressum</a>
 			<a href="${pageContext.request.contextPath}/others/faq.jsp">FAQ</a>
+			<a href="#logout">Logout</a>
 		</span>
 		</footer>
 	</body>
