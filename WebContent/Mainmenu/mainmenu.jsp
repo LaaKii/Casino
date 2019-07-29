@@ -15,7 +15,7 @@
 </head>
 <body class="basicBody">
 	<!--  <h1 class="basicHeader">Username ${userBean.username}</h1>-->
-	<h1 class="basicHeader">Recursino</h1>
+	<h1 class="basicHeader">Rekursino</h1>
 	<div class="choiceWrapper"><span id="choice">test</span></div>
 	<div class="content">
 		<a onmouseover="showTitle('Blackjack')" onmouseout="hideTitle()" href="${pageContext.request.contextPath}/games/blackjack.jsp"><img height="250" width="250" src="${pageContext.request.contextPath}/Ressources/blackjack.png"></a>

@@ -46,7 +46,6 @@ var black = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35];
 		});
 		
 		function loadKontostand(){
-			alert("in update konto");
 			$.get("/Casino/KontoServlet", function(responseText) { 
 				$("#balance").text(responseText + "$"); 
 			});
@@ -61,7 +60,6 @@ var black = [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35];
 		
 		function updateKonto(){
 			// var amount = Math.round(bet * winFactor);
-			alert("in update konto");
 			$.get("/Casino/TransactionServlet?amount="+amount, function(responseText) { 
 				$("#balance").text(responseText + "$"); 
 			});
