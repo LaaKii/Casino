@@ -15,6 +15,7 @@
 	var interval0, interval1, interval2;
 	
 	window.onload = function(){
+		loadKontostand();
 		slot = document.getElementsByClassName("slots");
 		for(var i = 0; i < slot.length; i++){
 		
@@ -32,6 +33,22 @@
 		default:break;
 	}
 	}
+		
+		function updateKonto(amount){
+			// var amount = Math.round(bet * winFactor);
+			alert("in update konto");
+			$.get("/Casino/TransactionServlet?amount="+amount, function(responseText) { 
+				$("#balance").text(responseText + "$"); 
+			});
+			loadKontostand();
+		}
+		
+		
+		function loadKontostand(){
+			$.get("/Casino/KontoServlet", function(responseText) { 
+				$("#balance").text(responseText + "$"); 
+			});
+		}
 		var imageNames = ["cherry", "lemon", "grape", "bell", "seven"];
 		var winRates = ["20", "50", "100", "1000", "10000"];
 		for(var i = 0; i < 5; i++){
@@ -192,8 +209,11 @@
 			default:break;
 				}
 			document.getElementById("result").innerHTML = profit + "$ gewonnen!";
+			updateKonto(profit);
 		}
 		else{
+			var bet = document.getElementById("betInput").value;
+			updateKonto("-" + profit);
 			document.getElementById("result").innerHTML = "verloren" ;
 		}
 		
@@ -331,7 +351,7 @@
 </style>
 <body class="basicBody">
 <div id="table">
-<div id="balance">500$</div>
+<div id="balance"></div>
 <div id="slotMachine">
 <div id="result">slotmachine</div>
 <button class="basicButton" id="startButton" onclick="start()">Start</button>
