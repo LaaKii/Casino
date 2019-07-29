@@ -56,12 +56,16 @@ var slot;
 	
 	function updateKonto(amount){
 		$.get("/Casino/TransactionServlet?amount="+ amount, function(responseText) { 
+			alert("in update konto");
 			$("#balance").text(responseText + "$"); 
 		});
+		loadKontostand();
 	}
+	
 	
 	function loadKontostand(){
 		$.get("/Casino/KontoServlet", function(responseText) { 
+			alert("in load konto");
 			$("#balance").text(responseText + "$"); 
 		});
 	}
