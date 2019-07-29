@@ -13,19 +13,35 @@
 
 	var playerCards = 0, dealerCards = 0;
 	var secondDealerCardImage = "";
+	var amount = 0;
+	var bet;
 	
+	$(document).ready(function() {
+		loadKontostand();
+	});
 	
+	function loadKontostand(){
+		$.get("/Casino/KontoServlet", function(responseText) { 
+			$("#balance").text(responseText + "$"); 
+		});
+	}
 	
+	function updateKonto(){
+		$.get("/Casino/TransactionServlet?amount="+amount, function(responseText) { 
+			$("#balance").text(responseText + "$"); 
+		});
+		loadKontostand();
+	}
 	
 	$(document).ready(function() {
 		$("#startButton").click(function(){
-			
-			var bet = document.getElementById("betInput").value;
+			bet = document.getElementById("betInput").value;
 			document.getElementById("startGameBox").style.visibility = "hidden";
 			document.getElementById("userInput").style.visibility = "visible";
 			document.getElementById("placedBet").style.visibility = "visible";
 			document.getElementById("placedBetValue").innerHTML = bet + "$";
-			$.get("/Casino/BlackJackServlet?game=go", function(responseText) { 
+			$.get("/Casino/BlackJackServlet?game=go", function(responseText) {
+				console.log(responseText);
 				var arrayOfStrings = responseText.split(";");
 				for(i in arrayOfStrings){
 					var temp = arrayOfStrings[i].split("=");
@@ -43,6 +59,11 @@
 					}
 					else if(temp[0].indexOf("dealerCardValueHidden") != -1){
 						document.getElementById("dealerHandValue").innerHTML = temp[1];
+					}
+					else if(temp[0].indexOf("BlackJack") != -1){
+						turnDealerCard();
+						document.getElementById("startGameBox").style.visibility = "visible";
+						document.getElementById("placedBet").style.visibility = "hidden";
 					}
 					
 				}
@@ -73,6 +94,7 @@
 			turnDealerCard();
 			$.get("/Casino/BlackJackServlet?game=stay", function(responseText) { 
 				var arrayOfStrings = responseText.split(";");
+				console.log(responseText);
 				for(i in arrayOfStrings){
 					var temp = arrayOfStrings[i].split("=");
 					if(temp[0].indexOf("dealercard") != -1){
@@ -82,9 +104,21 @@
 					else if(temp[0].indexOf("dealerCardValue") != -1){
 						document.getElementById("dealerHandValue").innerHTML = temp[1];
 					}
+					else if(temp[0].indexOf("PlayerWins") != -1){
+						amount = bet/2;
+						alert(amount);
+						updateKonto();
+					}
+					else if(temp[0].indexOf("DealerWins") != -1){
+						amount = -1*(bet/2);
+						alert(amount);
+						updateKonto();
+					}
 				}
+				//alert ("Game over");
 				document.getElementById("startGameBox").style.visibility = "visible";
 				document.getElementById("placedBet").style.visibility = "hidden";
+				
 			});
 		});	
 	})
@@ -109,8 +143,10 @@
 					else if(temp[0].indexOf("dealerCardValue") != -1){
 						document.getElementById("dealerHandValue").innerHTML = temp[1];
 					}
+					
 				}
 			});
+			
 			turnDealerCard();
 			document.getElementById("startGameBox").style.visibility = "visible";
 			document.getElementById("placedBet").style.visibility = "hidden";
@@ -371,7 +407,7 @@ to {
 		<div id="playerHandValue">0</div>
 		<div id="dealerHandValue">0</div>
 		<div id="dealerCards"></div>
-		<div id="balance">5000$</div>
+		<div id="balance"></div>
 		<div id="placedBet">
 			Einsatz: <span id="placedBetValue"></span>
 		</div>
