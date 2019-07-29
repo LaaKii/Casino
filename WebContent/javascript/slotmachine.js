@@ -22,18 +22,6 @@ var slot;
 		default:break;
 	}
 	}
-		function loadKontostand(){
-			$.get("/Casino/KontoServlet", function(responseText) { 
-				$("#balance").text(responseText + "$"); 
-			});
-		}
-		
-		function updateKonto(amount){
-			$.get("/Casino/TransactionServlet?amount="+ amount, function(responseText) { 
-				$("#balance").text(responseText + "$"); 
-			});
-			loadKontostand();
-		}
 		
 		
 		
@@ -62,6 +50,19 @@ var slot;
 		}
 		
 		
+	}
+	
+	function loadKontostand(){
+		$.get("/Casino/KontoServlet", function(responseText) { 
+			$("#balance").text(responseText + "$"); 
+		});
+	}
+	
+	function updateKonto(amount){
+		$.get("/Casino/TransactionServlet?amount="+ amount, function(responseText) { 
+			$("#balance").text(responseText + "$"); 
+		});
+		loadKontostand();
 	}
 	
 	function startSlot(num) {
