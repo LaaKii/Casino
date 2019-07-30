@@ -52,20 +52,21 @@ var slot;
 		
 	}
 	
-	
-	
-	function updateKonto(amount){
-		$.get("/Casino/TransactionServlet?amount="+ amount, function(responseText) { 
-			$("#blablabla").text(responseText + "$");
-		});
-	}
-	
-	
 	function loadKontostand(){
 		$.get("/Casino/KontoServlet", function(responseText) { 
 			$("#balance").text(responseText + "$"); 
 		});
 	}
+	
+	function updateKonto(amount){
+		$.get("/Casino/TransactionServlet?amount="+ amount, function(responseText) { 
+			$("#balance").text(responseText + "$");
+		});
+		loadKontostand();
+	}
+	
+	
+	
 	
 	function startSlot(num) {
 		
@@ -201,10 +202,12 @@ var slot;
 				}
 			document.getElementById("result").innerHTML = profit + "$ gewonnen!";
 			updateKonto(profit);
+			loadKontostand();
 		}
 		else{
 			var bet = document.getElementById("betInput").value;
 			updateKonto("-" + bet);
+			loadKontostand();
 			document.getElementById("result").innerHTML = "verloren" ;
 		}
 		
