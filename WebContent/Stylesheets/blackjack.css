@@ -1,1 +1,136 @@
 @charset "ISO-8859-1";
+
+.animation {
+	animation-duration: 5s;
+	animation-name: move;
+}
+
+@
+keyframe move {from { top:300px;
+	right: 20px;
+}
+
+to {
+	
+}
+
+}
+#table {
+	margin-top: 50px;
+	height: 700px;
+	width: 1000px;
+	background-color: green;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0px;
+	right: 0px;
+	border: 8px solid rgb(77, 51, 0);
+	border-radius: 30px;
+}
+
+#cardDeck {
+	position: absolute;
+	right: 20px;
+	top: 300px;
+}
+
+#userInput {
+	position: absolute;
+	bottom: 40px;
+	left: 40px;
+	text-align: center;
+	visibility: hidden;
+}
+
+#playerCards {
+	height: 180px;
+	width: 130px;
+	border: 4px solid grey;
+	position: absolute;
+	top: 482px;
+	right: 432px;
+	border-radius: 30px;
+}
+
+#dealerCards {
+	height: 180px;
+	width: 130px;
+	border: 4px solid grey;
+	position: absolute;
+	top: 30px;
+	right: 432px;
+	border-radius: 30px;
+}
+
+#header {
+	margin-top: 100px;
+	opacity: 0.4;
+}
+
+#startGameBox {
+	position: absolute;
+	top: 500px;
+	right: 20px;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 30px;
+	text-align: center;
+	font-size: 30px;
+}
+
+#betInput {
+	border-style: none;
+	font-size: 30px;
+	width: 80px;
+	margin-left: 10px;
+	padding: 10px 20px;
+	border-radius: 30px;
+}
+
+#startButton {
+	margin-top: 30px;
+}
+
+#balance {
+	position: absolute;
+	top: 30px;
+	left: 20px;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 30px;
+	font-size: 40px;
+}
+
+#playerHandValue {
+	position: absolute;
+	top: 482px;
+	left: 300px;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 30px;
+	font-size: 40px;
+}
+
+#dealerHandValue {
+	position: absolute;
+	top: 30px;
+	left: 300px;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 30px;
+	font-size: 40px;
+}
+
+#placedBet {
+	position: absolute;
+	bottom: 30px;
+	right: 80px;
+	visibility: hidden;
+	font-size: 30px;
+}
+
+.playButton {
+	margin: 10px 0px;
+	width: 200px;
+}

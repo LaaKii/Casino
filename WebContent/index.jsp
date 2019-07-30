@@ -42,7 +42,7 @@
 					<td><button class="basicButton" name="signin" type="submit">Anmelden</button></td>
 				</tr>
 				<tr>
-					<th colspan="2" id="forgetpw"><a href=#>Passwort vergessen?</a></th>
+					<th colspan="2" id="forgetpw"><a href="${pageContext.request.contextPath}/others/faq.jsp">Passwort vergessen?</a></th>
 				</tr>
 			</table>
 		</form>

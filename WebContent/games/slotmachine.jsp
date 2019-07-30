@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/slotmachine.css">		
 
-<script type='text/javascript' src='${pageContext.request.contextPath}/javascript/slotmachine.js'></script>7
+<script type='text/javascript' src='${pageContext.request.contextPath}/javascript/slotmachine.js'></script>
 <script type='text/javascript' src='${pageContext.request.contextPath}/javascript/jquery.js'></script>
 
 		
