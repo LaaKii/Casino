@@ -7,9 +7,10 @@
 <title>Slotmachine</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/basic.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/Stylesheets/slotmachine.css">		
-<script src="https://code.jquery.com/jquery-1.10.2.js"
-		type="text/javascript"></script>
-<script type='text/javascript' src='${pageContext.request.contextPath}/javascript/slotmachine.js'></script>
+
+<script type='text/javascript' src='${pageContext.request.contextPath}/javascript/slotmachine.js'></script>7
+<script type='text/javascript' src='${pageContext.request.contextPath}/javascript/jquery.js'></script>
+
 		
 </head>
 
